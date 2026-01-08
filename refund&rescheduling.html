@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour - Login</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: white;
+            padding: 12px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #22bcb0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
+        }
+
+        .logo-section .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #22bcb0;
+        }
+
+        .website-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #22bcb0;
+            letter-spacing: 0.5px;
+        }
+
+        .search-bar {
+            flex: 1;
+            min-width: 200px;
+            max-width: 500px;
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            padding-right: 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #22bcb0;
+            box-shadow: 0 2px 15px rgba(34, 188, 176, 0.2);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #22bcb0;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #1a9c92;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: #22bcb0;
+        }
+
+        .header-nav span {
+            color: #ccc;
+        }
+
+        /* Main Content Area - Right Aligned */
+        .main-content-area {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex: 1;
+            padding: 20px;
+            background: white;
+            min-height: calc(100vh - 150px);
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 380px;
+            margin-right: 50px;
+        }
+
+        .login-box {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            width: 100%;
+            border: 1px solid #e8e8e8;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            color: #22bcb0;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: #22bcb0;
+            font-size: 22px;
+        }
+
+        .notification {
+            background-color: #f0f9ff;
+            border-left: 3px solid #22bcb0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .notification strong {
+            color: #22bcb0;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e8e8e8;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab.active {
+            color: #22bcb0;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #22bcb0;
+        }
+
+        .login-form {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 14px;
+            z-index: 1;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 12px 12px 35px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background-color: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #22bcb0;
+            box-shadow: 0 0 0 2px rgba(34, 188, 176, 0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            left: auto;
+            cursor: pointer;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .toggle-password:hover {
+            color: #22bcb0;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .checkbox-container label {
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #22bcb0;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .forgot-link:hover {
+            color: #1a9c92;
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #22bcb0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-login:hover {
+            background-color: #1a9c92;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(34, 188, 176, 0.2);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .terms {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .terms a {
+            color: #22bcb0;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #get-code {
+            background-color: #22bcb0;
+            border: 1px solid #22bcb0;
+            color: white;
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border-radius: 0 6px 6px 0;
+            border-left: none;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        #get-code:hover {
+            background-color: #1a9c92;
+            border-color: #1a9c92;
+        }
+
+        #get-code:disabled {
+            background-color: #cccccc;
+            border-color: #cccccc;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            position: relative;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e8e8e8;
+            z-index: 1;
+        }
+
+        .divider span {
+            display: inline-block;
+            padding: 0 15px;
+            background-color: white;
+            color: #999;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .other-options {
+            text-align: center;
+        }
+
+        .other-options p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .other-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .other-links a {
+            color: #22bcb0;
+            text-decoration: none;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+        }
+
+        .other-links a:hover {
+            color: #1a9c92;
+            text-decoration: underline;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 11px;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-container {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            min-width: 200px;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #e8e8e8;
+        }
+
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f7fa;
+            color: #22bcb0;
+        }
+
+        .dropdown-menu hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 8px 0;
+        }
+
+        .dropdown-menu p {
+            padding: 4px 15px;
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .customer-center {
+            font-weight: 600;
+            color: #22bcb0 !important;
+        }
+
+        .icon-link {
+            font-size: 16px !important;
+        }
+
+        /* Footer Styles */
+        .main-ctrip-footer {
+            background: white;
+            color: #333;
+            padding: 20px 0 15px;
+            margin-top: auto;
+            border-top: 2px solid #22bcb0;
+        }
+
+        .footer-content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-column {
+            margin-bottom: 15px;
+        }
+
+        .column-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #22bcb0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid rgba(34, 188, 176, 0.3);
+        }
+
+        .column-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s;
+            line-height: 1.4;
+        }
+
+        .footer-link:hover {
+            color: #22bcb0;
+            transform: translateX(3px);
+        }
+
+        /* Contact & QR Area */
+        .contact-qr-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .contact-header {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .phone-number {
+            color: #22bcb0;
+            font-weight: 600;
+        }
+
+        .qr-download-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .qr-placeholder {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-caption {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        /* Footer Bottom Section */
+        .footer-bottom-section {
+            max-width: 1400px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+
+        .bottom-divider {
+            border: none;
+            border-top: 1px solid #e8e8e8;
+            margin-bottom: 10px;
+        }
+
+        .copyright-info,
+        .authority-info,
+        .report-info {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .info-link {
+            color: #22bcb0;
+            text-decoration: none;
+        }
+
+        .info-link:hover {
+            text-decoration: underline;
+        }
+
+        .authority-icon {
+            margin-right: 3px;
+        }
+
+        .hotline {
+            color: #22bcb0;
+            font-weight: 600;
+        }
+
+        .commitment-link {
+            color: #22bcb0 !important;
+        }
+
+        /* Certificate Logos */
+        .certificate-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .logo-placeholder {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 4px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px 15px;
+            }
+            
+            .logo-section {
+                justify-content: center;
+            }
+            
+            .search-bar {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-nav {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                padding: 10px;
+            }
+            
+            .main-content-area {
+                padding: 15px;
+                justify-content: center;
+            }
+            
+            .login-wrapper {
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .website-name {
+                font-size: 18px;
+            }
+            
+            .logo-section .logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .login-box {
+                padding: 15px;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .header-nav {
+                gap: 8px;
+            }
+            
+            .header-nav a {
+                font-size: 12px;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .other-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .form-control {
+                padding: 10px 10px 10px 35px;
+                font-size: 13px;
+            }
+            
+            .input-with-icon i {
+                left: 10px;
+                font-size: 13px;
+            }
+            
+            .footer-content-wrapper {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .column-title {
+                font-size: 14px;
+            }
+            
+            .footer-link {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 12px;
+                max-width: 300px;
+            }
+            
+            .logo h1 {
+                font-size: 18px;
+            }
+            
+            .tab {
+                font-size: 13px;
+                padding: 8px 5px;
+            }
+            
+            .notification {
+                font-size: 11px;
+                padding: 8px;
+            }
+            
+            .btn-login {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .terms {
+                font-size: 10px;
+            }
+            
+            .login-footer {
+                font-size: 10px;
+            }
+        }
+
+        /* Animation for form switching */
+        .form-switch {
+            animation: formSwitch 0.3s ease;
+        }
+
+        @keyframes formSwitch {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Loading state for button */
+        .btn-login.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-login.loading::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            top: 50%;
+            left: 50%;
+            margin-left: -9px;
+            margin-top: -9px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+                <span class="website-name">Kimberley</span>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search for anything related to travel">
+                <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#">Log in</a><span>|</span>
+                <a href="#">Register</a><span>|</span>
+
+                <div class="dropdown-container" id="myOrdersDropdown">
+                    <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                    <div class="dropdown-menu order-dropdown-menu">
+                        <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                        <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                        <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                        <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                        <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                        <hr>
+                        <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                    </div>
+                </div>
+
+                <span>|</span>
+
+                <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                    <a href="#" class="dropdown-toggle">Contact customer service <i class="fa-solid fa-caret-down"></i></a>
+                    <div class="dropdown-menu contact-dropdown-menu">
+                        <a href="#" class="customer-center">Visit Customer Center ></a>
+                        <hr>
+                        <p>Domestic: 95010 / 400-830-6666</p>
+                        <p>HK: +852-3008-3295</p>
+                        <p>Macao: +86-21 3406-4888</p>
+                        <p>Taiwan: +86-21 3406-4888</p>
+                        <p>Other regions: +86-21 3406-4888</p>
+                    </div>
+                </div>
+
+                <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Compact -->
+    <div class="main-content-area">
+        <div class="login-wrapper">
+            <div class="login-box">
+                <div class="logo">
+                    <h1><i class="fas fa-plane"></i> Kimberley</h1>
+                </div>
+                
+                <div class="notification">
+                    According to the <strong>Cybersecurity Law</strong>, to ensure the normal use of related functions, your account needs to be bound to a mobile phone number. If you haven't bound it yet, you'll be guided to do so after logging in.
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" id="password-tab">Password Login</div>
+                    <div class="tab" id="verification-tab">Code Login</div>
+                </div>
+                
+                <form class="login-form" id="password-form">
+                    <div class="form-group">
+                        <label for="username">Phone/Username/Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" class="form-control" placeholder="Enter your phone/username/email">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" class="form-control password" placeholder="Enter your password">
+                            <i class="fas fa-eye toggle-password" id="toggle-password"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">Login</button>
+                    
+                    <div class="terms">
+                        By logging in, you agree to our <a href="#">Service Agreement</a> and <a href="#">Privacy Policy</a>
+                    </div>
+                </form>
+                
+                <form class="login-form hidden" id="verification-form">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="verification-code">Verification Code</label>
+                        <div class="input-with-icon" style="display: flex;">
+                            <i class="fas fa-shield-alt" style="z-index: 2; left: 12px;"></i>
+                            <input type="text" id="verification-code" class="form-control" placeholder="Enter code" style="border-top-right-radius: 0; border-bottom-right-radius: 0; padding-left: 35px; flex: 1;">
+                            <button type="button" id="get-code">Get Code</button>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                        <input type="checkbox" id="remember-verification">
+                        <label for="remember-verification">Remember me</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">Login</button>
+                    
+                    <div class="terms">
+                        By logging in, you agree to our <a href="#">Service Agreement</a> and <a href="#">Privacy Policy</a>
+                    </div>
+                </form>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <div class="other-options">
+                    <p>No account yet? <a href="#" style="color: #22bcb0; text-decoration: none;">Sign Up</a></p>
+                    
+                    <div class="other-links">
+                        <a href="#"><i class="fas fa-globe"></i> Overseas Phone</a>
+                        <a href="#"><i class="fas fa-building"></i> Corporate</a>
+                        <a href="#"><i class="fas fa-user-circle"></i> Kimberley Pass</a>
+                    </div>
+                </div>
+                
+                <div class="login-footer">
+                    &copy; 2026 Kimberley Travel & Tour
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-ctrip-footer">
+        <div class="footer-content-wrapper">
+            <div class="footer-column travel-info">
+                <h4 class="column-title">Travel Information</h4>
+                <div class="column-links-grid">
+                    <a href="#" class="footer-link">Hotel Index</a>
+                    <a href="#" class="footer-link">Strategy Index</a>
+                    <a href="#" class="footer-link">Flight Index</a>
+                    <a href="#" class="footer-link">Site Navigation</a>
+                    <a href="#" class="footer-link">Travel Index</a>
+                </div>
+            </div>
+
+            <div class="footer-column franchise-cooperation">
+                <h4 class="column-title">Franchise cooperation</h4>
+                <div class="column-links-grid">
+                    <a href="#" class="footer-link">Distribution Alliance</a>
+                    <a href="#" class="footer-link">Friendly Links</a>
+                    <a href="#" class="footer-link">Insurance Cooperation</a>
+                    <a href="#" class="footer-link">Gift card</a>
+                    <a href="#" class="footer-link">Hotel Franchise</a>
+                </div>
+            </div>
+
+            <div class="footer-column about-ctrip">
+                <h4 class="column-title">About Kimberley</h4>
+                <div class="column-links-grid">
+                    <a href="#" class="footer-link">About Kimberley</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">User Agreement</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Business License</a>
+                </div>
+            </div>
+
+            <div class="footer-column contact-qr-area">
+                <div class="contact-info">
+                    <p class="contact-header">Within the territory: <span class="phone-number">95010</span></p>
+                    <p class="contact-header">Or <span class="phone-number">400-830-6666</span></p>
+                    <p>Hong Kong: <span class="phone-number">+852-3008-3205</span></p>
+                    <p>International: <span class="phone-number">+86-21-3406-4888</span></p>
+                </div>
+
+                <div class="qr-download-box">
+                    <div class="qr-placeholder">
+                        <span style="color: #666; font-size: 10px;">QR Code</span>
+                    </div>
+                    <p class="qr-caption">Scan to download Kimberley App</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-section">
+            <hr class="bottom-divider">
+            <p class="copyright-info">
+                Copyright © 1999-2025, kimberley.com. All rights reserved.
+            </p>
+
+            <p class="authority-info">
+                <span class="authority-icon">🔴</span> 
+                <a href="#" class="info-link">Shanghai Public Security Bureau Registration No. 31010502002731</a>
+            </p>
+
+            <p class="report-info">
+                Report hotline: <span class="hotline">021-22230045</span> | 
+                Tourism complaint: <span class="hotline">12345</span>
+            </p>
+
+            <div class="certificate-logos">
+                <div class="logo-placeholder"></div>
+                <div class="logo-placeholder"></div>
+                <div class="logo-placeholder"></div>
+                <div class="logo-placeholder"></div>
+                <div class="logo-placeholder"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        const passwordTab = document.getElementById('password-tab');
+        const verificationTab = document.getElementById('verification-tab');
+        const passwordForm = document.getElementById('password-form');
+        const verificationForm = document.getElementById('verification-form');
+        
+        passwordTab.addEventListener('click', () => {
+            passwordTab.classList.add('active');
+            verificationTab.classList.remove('active');
+            passwordForm.classList.remove('hidden');
+            verificationForm.classList.add('hidden');
+            passwordForm.classList.add('form-switch');
+            setTimeout(() => {
+                passwordForm.classList.remove('form-switch');
+            }, 300);
+        });
+        
+        verificationTab.addEventListener('click', () => {
+            verificationTab.classList.add('active');
+            passwordTab.classList.remove('active');
+            verificationForm.classList.remove('hidden');
+            passwordForm.classList.add('hidden');
+            verificationForm.classList.add('form-switch');
+            setTimeout(() => {
+                verificationForm.classList.remove('form-switch');
+            }, 300);
+        });
+        
+        // Password visibility toggle
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                togglePassword.classList.toggle('fa-eye');
+                togglePassword.classList.toggle('fa-eye-slash');
+            });
+        }
+        
+        // Verification code functionality
+        const getCodeBtn = document.getElementById('get-code');
+        let countdown = 0;
+        
+        if (getCodeBtn) {
+            getCodeBtn.addEventListener('click', () => {
+                if (countdown > 0) return;
+                
+                const phone = document.getElementById('phone').value;
+                if (!phone || phone.length < 10) {
+                    alert('Please enter a valid phone number');
+                    return;
+                }
+                
+                countdown = 60;
+                getCodeBtn.disabled = true;
+                getCodeBtn.style.backgroundColor = '#cccccc';
+                getCodeBtn.style.color = '#999';
+                
+                const countdownInterval = setInterval(() => {
+                    getCodeBtn.textContent = `Resend (${countdown}s)`;
+                    countdown--;
+                    
+                    if (countdown < 0) {
+                        clearInterval(countdownInterval);
+                        getCodeBtn.textContent = 'Get Code';
+                        getCodeBtn.disabled = false;
+                        getCodeBtn.style.backgroundColor = '#22bcb0';
+                        getCodeBtn.style.color = 'white';
+                    }
+                }, 1000);
+                
+                alert(`Verification code sent to ${phone}. For demo purposes, use code: 123456`);
+            });
+        }
+        
+        // Form submission handling
+        const forms = document.querySelectorAll('.login-form');
+        
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('.btn-login');
+                
+                // Show loading state
+                submitBtn.classList.add('loading');
+                
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    
+                    if (form.id === 'password-form') {
+                        const username = document.getElementById('username').value;
+                        const password = document.getElementById('password').value;
+                        
+                        if (!username || !password) {
+                            alert('Please enter both username and password');
+                            return;
+                        }
+                        
+                        alert(`Login successful! Welcome, ${username}`);
+                    } else {
+                        const phone = document.getElementById('phone').value;
+                        const code = document.getElementById('verification-code').value;
+                        
+                        if (!phone || !code) {
+                            alert('Please enter both phone number and verification code');
+                            return;
+                        }
+                        
+                        alert(`Login successful with verification code! Welcome, ${phone}`);
+                    }
+                }, 1000);
+            });
+        });
+        
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const menu = this.nextElementSibling;
+                    const isVisible = menu.style.opacity === '1';
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(otherMenu => {
+                        if (otherMenu !== menu) {
+                            otherMenu.style.opacity = '0';
+                            otherMenu.style.visibility = 'hidden';
+                            otherMenu.style.transform = 'translateY(10px)';
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (isVisible) {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(10px)';
+                    } else {
+                        menu.style.opacity = '1';
+                        menu.style.visibility = 'visible';
+                        menu.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!e.target.closest('.dropdown-container')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(10px)';
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

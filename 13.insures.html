@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | Home</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="bus-ticket.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00b894;   /* Green primary */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --secondary-color: #f1f8f5;
+            --border-color: #e0e0e0;
+            --accent-color: #e8f7f3;
+            --footer-bg: #f9f9f9;
+            --footer-text: #666666;
+            --table-header-bg: #f1f8f5;
+        }
+        body { margin:0; padding:0; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; color:var(--text-color); background:var(--bg-color); }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+
+        <!-- Hamburger inside sidebar -->
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav>
+            <ul>
+                <li class="menu-item" data-menu="hotel">
+                    <a href="#">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="text">Hotel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                        <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                    </ul>
+                    <div class="hover-description">Hotel</div>
+                </li>
+
+                <li class="menu-item " data-menu="flight">
+                    <a href="#">
+                        <i class="fa-solid fa-plane"></i>
+                        <span class="text">Airfare</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao
+                            andTaiwan</a></li>
+                        <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                        <li><a href="flightStatusAirfare.html" >Flight status</a></li>
+                        <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                        <li><a href="guideAirfare.html" >Airport Guide</a></li>
+                        <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                    </ul>
+                    <div class="hover-description">Hotel</div>
+                </li>
+
+                <!-- <li class="menu-item" data-menu="train">
+                    <a href="#">
+                        <i class="fa-solid fa-train"></i>
+                        <span class="text">Train tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Domestic train tickets</a></li>
+                        <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                    </ul>
+                    <div class="hover-description">Train tickets</div>
+                </li> -->
+
+                <li class="menu-item active" data-menu="travels">
+                    <a href="#">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="text">Travel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                        <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                        <li><a href="3.Private-group.html">Private tour</a></li>
+                        <li><a href="4.Free-walking.html">Independent travel</a></li>
+                        <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                        <li><a href="6.Day-trip.html">Day trip</a></li>
+                        <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                        <li><a href="8.Surrounding.html">Local tours</a></li>
+                        <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                        <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                        <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                        <li><a href="12.Visa.html">Visa</a></li>
+                        <li><a href="13.insures.html">Insurance</a></li>
+                        <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                        <li><a href="15.Destination.html">Destination</a></li>
+                    </ul>
+                    <div class="hover-description">Travel</div>
+                </li>
+
+                <li class="menu-item" data-menu="tickets">
+                    <a href="#">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span class="text">Tickets & Events</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sub-menu Item X</a></li>
+                        <li><a href="#">Sub-menu Item Y</a></li>
+                    </ul>
+                    <div class="hover-description">Tickets & Events</div>
+                </li>
+
+                <li class="menu-item" data-menu="Bus&Boat">
+                    <a href="#">
+                        <i class="fa-solid fa-bus"></i>
+                        <span class="text">Bus and boat tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="busTicket.html">Bus ticket</a></li>
+                        <li><a href="boatTicket.html">Boat ticket</a></li>
+                    </ul>
+                    <div class="hover-description">Bus and boat tickets</div>
+                </li>
+
+                <li class="menu-item " data-menu="Car">
+                    <a href="#">
+                        <i class="fa-solid fa-car"></i>
+                        <span class="text">Car</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                        <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                        <li><a href="airportpickup.html" >Airport pick-up and drop-off station</a></li>
+                        <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                    </ul>
+                    <div class="hover-description">Car</div>
+                </li>
+
+
+            </ul>
+        </nav>
+    </aside>
+
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-content">
+
+                <div class="logo-section">
+                    <img class="logo" src="img/kimberley.jpg">
+                    <span class="website-name">Kimberley</span>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything related to travel">
+                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <nav class="header-nav">
+                    <a href="#">Log in</a><span>|</span>
+                    <a href="#">Register</a><span>|</span>
+
+                    <div class="dropdown-container" id="myOrdersDropdown">
+                        <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu order-dropdown-menu">
+                            <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                            <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                            <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                            <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                            <hr>
+                            <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                        </div>
+                    </div>
+
+                    <span>|</span>
+
+                    <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                        <a href="#" class="dropdown-toggle">Contact customer service <i
+                                class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu contact-dropdown-menu">
+                            <a href="#" class="customer-center">Visit Customer Center ></a>
+                            <hr>
+                            <p>Domestic: 95010 / 400-830-6666</p>
+                            <p>HK: +852-3008-3295</p>
+                            <p>Macao: +86-21 3406-4888</p>
+                            <p>Taiwan: +86-21 3406-4888</p>
+                            <p>Other regions: +86-21 3406-4888</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+                    <div class="theme-toggle" id="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <span class="theme-switch-inner"></span>
+                            <span class="theme-switch-slider"></span>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Hero Section -->
+        <section style="background:linear-gradient(135deg,var(--primary-gradient-start) 0%,var(--primary-gradient-end) 100%);color:var(--bg-card);padding:3rem 0;border-radius:0 0 20px 20px;margin-bottom:2rem;position:relative;overflow:hidden;">
+            <div style="max-width:1200px;margin:0 auto;padding:0 15px;position:relative;z-index:2;">
+                <div style="font-size:1.2rem;font-weight:600;margin-bottom:1rem;display:inline-block;background-color:var(--white-alpha-20);padding:0.5rem 1rem;border-radius:30px;">
+                    <i class="fas fa-building" style="margin-right:0.5rem;"></i>Kemberley Insurance Agents Co., Ltd.
+                </div>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;margin:-0.5rem;">
+                    <div style="flex:1 1 500px;padding:0.5rem;">
+                        <h1 style="font-size:2.5rem;font-weight:bold;margin-bottom:1rem;">Global Travel Insurance</h1>
+                        <p style="font-size:1.25rem;margin-bottom:1.5rem;">Comprehensive protection for your journeys worldwide. Travel with peace of mind knowing you're covered for unexpected events.</p>
+                        <div style="margin-bottom:1.5rem;">
+<span style="background-color:var(--white-alpha-20);border-radius:20px;padding:0.5rem 1rem;font-size:0.9rem;margin-right:0.5rem;margin-bottom:0.5rem;display:inline-block;">
+<i class="fas fa-globe" style="margin-right:0.25rem;"></i> Worldwide Coverage
+</span>
+                            <span style="background-color:var(--white-alpha-20);border-radius:20px;padding:0.5rem 1rem;font-size:0.9rem;margin-right:0.5rem;margin-bottom:0.5rem;display:inline-block;">
+<i class="fas fa-clock" style="margin-right:0.25rem;"></i> 24/7 Support
+</span>
+                            <span style="background-color:var(--white-alpha-20);border-radius:20px;padding:0.5rem 1rem;font-size:0.9rem;margin-right:0.5rem;margin-bottom:0.5rem;display:inline-block;">
+<i class="fas fa-shield-alt" style="margin-right:0.25rem;"></i> Reliable Protection
+</span>
+                        </div>
+                    </div>
+                    <div style="flex:1 1 400px;padding:0.5rem;text-align:center;">
+                        <img src="https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.png" alt="Travel Insurance" style="max-width:100%;height:auto;max-height:300px;">
+                    </div>
+                </div>
+            </div>
+            <div style="position:absolute;right:0;bottom:0;height:100%;opacity:0.2;z-index:1;">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Travel Background" style="height:100%;object-fit:cover;width:auto;">
+            </div>
+        </section>
+        <!-- Insurance Selection Form -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;">
+            <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 12px var(--shadow-sm);padding:2rem;margin-bottom:2rem;">
+                <h3 style="margin-bottom:1.5rem;">Get Your Travel Insurance Quote</h3>
+                <form>
+                    <div style="display:flex;flex-wrap:wrap;margin:-0.75rem;">
+                        <div style="flex:1 1 300px;padding:0.75rem;">
+                            <label style="font-weight:600;margin-bottom:0.5rem;display:block;">Destination</label>
+                            <input type="text" placeholder="City/Province/Country/Region" style="width:100%;padding:0.5rem;border:1px solid var(--border-color);border-radius:4px;">
+                        </div>
+                        <div style="flex:1 1 300px;padding:0.75rem;">
+                            <label style="font-weight:600;margin-bottom:0.5rem;display:block;">Travel Dates</label>
+                            <div style="display:flex;align-items:center;">
+                                <input type="date" value="2025-11-08" style="flex:1;padding:0.5rem;border:1px solid var(--border-color);border-radius:4px 0 0 4px;">
+                                <span style="padding:0.5rem;background:var(--bg-muted);border:1px solid var(--border-color);border-left:none;border-right:none;">to</span>
+                                <input type="date" value="2025-11-10" style="flex:1;padding:0.5rem;border:1px solid var(--border-color);border-radius:0 4px 4px 0;">
+                            </div>
+                        </div>
+                        <div style="flex:1 1 300px;padding:0.75rem;">
+                            <label style="font-weight:600;margin-bottom:0.5rem;display:block;">Insurance Type</label>
+                            <select style="width:100%;padding:0.5rem;border:1px solid var(--border-color);border-radius:4px;">
+                                <option selected>Global Overseas Travel Insurance</option>
+                                <option>Domestic Travel Insurance</option>
+                                <option>Visa Application Insurance</option>
+                                <option>Study Abroad Insurance</option>
+                                <option>Cruise Travel Insurance</option>
+                            </select>
+                        </div>
+                        <div style="flex:1 1 300px;padding:0.75rem;">
+                            <label style="font-weight:600;margin-bottom:0.5rem;display:block;">Travelers</label>
+                            <div style="display:flex;gap:0.5rem;">
+                                <div style="flex:1;display:flex;">
+                                    <span style="padding:0.5rem;background:var(--bg-muted);border:1px solid var(--border-color);border-radius:4px 0 0 4px;">Adults</span>
+                                    <input type="number" value="1" min="1" style="flex:1;padding:0.5rem;border:1px solid var(--border-color);border-radius:0 4px 4px 0;text-align:center;">
+                                </div>
+                                <div style="flex:1;display:flex;">
+                                    <span style="padding:0.5rem;background:var(--bg-muted);border:1px solid var(--border-color);border-radius:4px 0 0 4px;">Children (0-17)</span>
+                                    <input type="number" value="0" min="0" style="flex:1;padding:0.5rem;border:1px solid var(--border-color);border-radius:0 4px 4px 0;text-align:center;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <button type="submit" style="width:100%;padding:0.75rem;background-color:var(--primary-color);color:var(--bg-card);border:none;border-radius:4px;font-weight:600;cursor:pointer;">Get Quote Now</button>
+                    </div>
+                </form>
+                <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2rem;padding:1rem;background-color:var(--bg-light);border-radius:5px;">
+                    <p style="margin:0;"><strong>Disclaimer:</strong> This information is for reference only. Please refer to the company notices, service manuals, policy documents, online coverage details, complete warranty responsibilities, and liability exclusions. For full details, please refer to the insurance policy terms and conditions.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Insurance Types -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;margin-bottom:3rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">Comprehensive Coverage Options</h2>
+            <div style="display:flex;flex-wrap:wrap;margin:-0.75rem;">
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-plane"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Domestic Travel</h5>
+                        <p style="margin:0;">Insurance for travels within your country</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-passport"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Overseas Travel</h5>
+                        <p style="margin:0;">Comprehensive coverage for international trips</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-stamp"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Visa Application</h5>
+                        <p style="margin:0;">Specialized insurance for visa requirements</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-heartbeat"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Accident & Health</h5>
+                        <p style="margin:0;">Medical and accident protection</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-graduation-cap"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Study Abroad</h5>
+                        <p style="margin:0;">Insurance for students traveling overseas</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 300px;padding:0.75rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;text-align:center;transition:all 0.3s ease;cursor:pointer;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-ship"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Cruise Travel</h5>
+                        <p style="margin:0;">Specialized coverage for cruise vacations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Key Features -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;margin-bottom:3rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">Key Coverage Features</h2>
+            <div style="display:flex;flex-wrap:wrap;margin:-1rem;">
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-plane-departure"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Travel Delay Coverage</h5>
+                        <p style="margin:0;">Compensation for flight delays and cancellations</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-suitcase"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Baggage Delay</h5>
+                        <p style="margin:0;">Coverage for delayed or lost luggage</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-id-card"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Document Loss</h5>
+                        <p style="margin:0;">Assistance with lost passports and documents</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-life-ring"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Global Rescue</h5>
+                        <p style="margin:0;">24/7 emergency assistance worldwide</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-calendar-times"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Trip Cancellation</h5>
+                        <p style="margin:0;">Coverage for prepaid trip costs</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-laptop"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Personal Property</h5>
+                        <p style="margin:0;">Protection for personal belongings</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-user-md"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Medical Coverage</h5>
+                        <p style="margin:0;">Emergency medical expenses abroad</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:1rem;">
+                    <div style="background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);padding:1.5rem;height:100%;transition:transform 0.3s ease;">
+                        <div style="font-size:2rem;color:var(--primary-color);margin-bottom:1rem;"><i class="fas fa-balance-scale"></i></div>
+                        <h5 style="margin-bottom:0.5rem;">Personal Liability</h5>
+                        <p style="margin:0;">Coverage for accidental damage to others</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Insurance Process -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;margin-bottom:3rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">4 Easy Steps to Get Insured</h2>
+            <div style="display:flex;flex-wrap:wrap;margin:-0.75rem;">
+                <div style="flex:1 1 250px;padding:0.75rem;">
+                    <div style="text-align:center;padding:1.5rem;background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);height:100%;">
+                        <div style="width:40px;height:40px;background-color:var(--primary-color);color:var(--bg-card);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-weight:bold;">1</div>
+                        <h5 style="margin-bottom:0.5rem;">Filter Information</h5>
+                        <p style="margin:0;">Enter your travel details and preferences</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:0.75rem;">
+                    <div style="text-align:center;padding:1.5rem;background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);height:100%;">
+                        <div style="width:40px;height:40px;background-color:var(--primary-color);color:var(--bg-card);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-weight:bold;">2</div>
+                        <h5 style="margin-bottom:0.5rem;">Select Insurance</h5>
+                        <p style="margin:0;">Choose the plan that best fits your needs</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:0.75rem;">
+                    <div style="text-align:center;padding:1.5rem;background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);height:100%;">
+                        <div style="width:40px;height:40px;background-color:var(--primary-color);color:var(--bg-card);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-weight:bold;">3</div>
+                        <h5 style="margin-bottom:0.5rem;">Confirm & Pay</h5>
+                        <p style="margin:0;">Review your selection and complete payment</p>
+                    </div>
+                </div>
+                <div style="flex:1 1 250px;padding:0.75rem;">
+                    <div style="text-align:center;padding:1.5rem;background-color:var(--bg-card);border-radius:10px;box-shadow:0 4px 8px var(--shadow-md);height:100%;">
+                        <div style="width:40px;height:40px;background-color:var(--primary-color);color:var(--bg-card);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-weight:bold;">4</div>
+                        <h5 style="margin-bottom:0.5rem;">Download Policy</h5>
+                        <p style="margin:0;">Receive your electronic policy and terms</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Partners -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;margin-bottom:3rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">Our Insurance Partners</h2>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ping_An_Insurance_Group.svg/2560px-Ping_An_Insurance_Group.svg.png" alt="Ping An Insurance" style="height:50px;margin:0 1rem 1rem;filter:grayscale(100%);opacity:0.7;transition:all 0.3s ease;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/AIG_logo.svg/1280px-AIG_logo.svg.png" alt="AIG" style="height:50px;margin:0 1rem 1rem;filter:grayscale(100%);opacity:0.7;transition:all 0.3s ease;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/AXA_logo.svg/2560px-AXA_logo.svg.png" alt="AXA" style="height:50px;margin:0 1rem 1rem;filter:grayscale(100%);opacity:0.7;transition:all 0.3s ease;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Allianz_Logo.svg/2560px-Allianz_Logo.svg.png" alt="Allianz" style="height:50px;margin:0 1rem 1rem;filter:grayscale(100%);opacity:0.7;transition:all 0.3s ease;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Huatai_Insurance_Group_logo.svg/2560px-Huatai_Insurance_Group_logo.svg.png" alt="Huatai Insurance" style="height:50px;margin:0 1rem 1rem;filter:grayscale(100%);opacity:0.7;transition:all 0.3s ease;">
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section style="max-width:1200px;margin:0 auto;padding:0 15px;margin-bottom:3rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+            <div style="max-width:800px;margin:0 auto;">
+                <div style="margin-bottom:1rem;border-bottom:1px solid var(--border-soft);padding-bottom:1rem;">
+                    <div style="font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block';this.querySelector('i').classList.toggle('fa-chevron-down');this.querySelector('i').classList.toggle('fa-chevron-up');">
+                        <span>How to check policy and insurance terms?</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div style="margin-top:0.5rem;display:block;">
+                        <p>1) After successful payment, please go to "My Account" → "More Orders" → "Vacation Insurance Orders" to download the electronic policy and insurance terms.</p>
+                        <p>2) Specific coverage details and insurance limits can be found in the electronic policy and insurance terms. Electronic policies are legally valid.</p>
+                        <p>3) Electronic policies have the same legal effect as paper policies and can be used for visa applications after color printing.</p>
+                    </div>
+                </div>
+                <div style="margin-bottom:1rem;border-bottom:1px solid var(--border-soft);padding-bottom:1rem;">
+                    <div style="font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block';this.querySelector('i').classList.toggle('fa-chevron-down');this.querySelector('i').classList.toggle('fa-chevron-up');">
+                        <span>How to request an insurance invoice?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div style="margin-top:0.5rem;display:none;">
+                        <p>You can request an insurance invoice through your account dashboard. Go to "My Policies" and select the "Request Invoice" option for your specific policy. Invoices are typically available within 1-2 business days.</p>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <a href="#" style="padding:0.5rem 1rem;border:1px solid var(--primary-color);color:var(--primary-color);text-decoration:none;border-radius:4px;">More FAQ</a>
+                </div>
+            </div>
+        </section>
+        <!-- Travel Portal Footer -->
+        <footer style="background-color:var(--bg-light);padding:40px 0 20px;margin-top:40px;border-top:1px solid var(--border-soft);text-align:center;">
+            <div style="max-width:1200px;margin:0 auto;padding:0 15px;">
+                <div style="display:inline-block;margin-bottom:1rem;">
+                    <a href="#" style="display:inline-block;margin:0 12px;color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.2s;">
+                        <i class="fas fa-hotel" style="margin-right:0.25rem;"></i> Hotel Listings (酒店大全)
+                    </a>
+                    <a href="#" style="display:inline-block;margin:0 12px;color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.2s;">
+                        <i class="fas fa-car" style="margin-right:0.25rem;"></i> Domestic Car Rental (国内租车)
+                    </a>
+                    <a href="#" style="display:inline-block;margin:0 12px;color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.2s;">
+                        <i class="fas fa-hot-tub" style="margin-right:0.25rem;"></i> Hot Spring Travel (温泉旅游)
+                    </a>
+                    <a href="#" style="display:inline-block;margin:0 12px;color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.2s;">
+                        <i class="fas fa-umbrella-beach" style="margin-right:0.25rem;"></i> Island Travel (海岛旅游)
+                    </a>
+                    <a href="#" style="display:inline-block;margin:0 12px;color:var(--primary-color);text-decoration:none;font-size:14px;transition:color 0.2s;">
+                        <i class="fas fa-ellipsis-h" style="margin-right:0.25rem;"></i> More &gt;&gt;
+                    </a>
+                </div>
+                <div style="margin-top:30px;">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;text-align:left;">
+                        <div style="flex:1 1 250px;padding:0.5rem;">
+                            <h5 style="font-size:16px;margin-bottom:15px;color:var(--text-primary);">Popular Province Travel</h5>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Yunnan</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Hainan</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Tibet</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Sichuan</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Taiwan</a>
+                        </div>
+                        <div style="flex:1 1 250px;padding:0.5rem;">
+                            <h5 style="font-size:16px;margin-bottom:15px;color:var(--text-primary);">Popular City Travel</h5>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Sanya</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Chengdu</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Kunming</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Xi'an</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Lhasa</a>
+                        </div>
+                        <div style="flex:1 1 250px;padding:0.5rem;">
+                            <h5 style="font-size:16px;margin-bottom:15px;color:var(--text-primary);">Popular Theme Travel</h5>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Parent-Child Tour</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Honeymoon Tour</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Self-Drive Tour</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Cruise Tour</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Ski Tour</a>
+                        </div>
+                        <div style="flex:1 1 250px;padding:0.5rem;">
+                            <h5 style="font-size:16px;margin-bottom:15px;color:var(--text-primary);">Help & Support</h5>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">How to Book</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Payment Methods</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Travel Safety</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">Contact Us</a>
+                            <a href="#" style="display:block;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;font-size:14px;">About Us</a>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top:1.5rem;margin-bottom:0;font-size:12px;color:var(--text-muted);">© 2025 Kemberley | All Rights Reserved</p>
+            </div>
+        </footer>
+        <!-- Floating Utility Bar -->
+        <div style="position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:999;background:var(--bg-card);border:1px solid var(--border-light);box-shadow:0 4px 12px var(--shadow-sm);border-radius:6px;overflow:hidden;">
+            <a href="#top" style="display:block;padding:12px;text-align:center;color:var(--text-secondary);text-decoration:none;font-size:12px;border-bottom:1px solid var(--border-soft);transition:all 0.2s;">
+                <i style="display:block;font-size:18px;margin-bottom:3px;"><i class="fas fa-chevron-up"></i></i> TOP
+            </a>
+            <a href="javascript:void(0);" title="Scan QR Code" style="display:block;padding:12px;text-align:center;color:var(--text-secondary);text-decoration:none;font-size:12px;border-bottom:1px solid var(--border-soft);transition:all 0.2s;">
+                <i style="display:block;font-size:18px;margin-bottom:3px;"><i class="fas fa-qrcode"></i></i> Scan QR
+            </a>
+            <a href="javascript:void(0);" title="Customer Service" style="display:block;padding:12px;text-align:center;color:var(--text-secondary);text-decoration:none;font-size:12px;transition:all 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-secondary)'">
+                <i style="display:block;font-size:18px;margin-bottom:3px;"><i class="fas fa-headset"></i></i> Service
+            </a>
+        </div>
+        <script>
+            // Simple FAQ toggle (inline JS since Bootstrap JS is removed)
+            document.querySelectorAll('[onclick]').forEach(el => {
+                el.style.userSelect = 'none';
+            });
+        </script>
+        <script src="script.js"></script>
+</body>
+
+</html>

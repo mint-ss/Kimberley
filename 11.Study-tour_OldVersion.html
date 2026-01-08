@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | Home</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #00b894;
+            --primary-dark: #00a884;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --text-light: #999999;
+            --secondary-color: #f1f8f5;
+            --border-color: #e0e0e0;
+            --accent-color: #e8f7f3;
+            --footer-bg: #f9f9f9;
+            --footer-text: #666666;
+            --table-header-bg: #f1f8f5;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --danger-color: #e74c3c;
+            --transition-speed: 0.3s;
+            --hover-bg: rgba(0, 184, 148, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00d8a7;
+            --primary-dark: #00b894;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --text-muted: #cccccc;
+            --text-light: #999999;
+            --secondary-color: #2a3d35;
+            --border-color: #444444;
+            --footer-bg: #252525;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 220px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            transition: width var(--transition-speed);
+            overflow-y: auto;
+            box-shadow: 2px 0 5px var(--shadow-color);
+        }
+
+        .sidebar.collapsed:not(:hover) {
+           width: 70px
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--secondary-color);
+        }
+
+        .sidebar nav {
+            padding-top: 50px;
+        }
+
+        .menu-item {
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-item > a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .menu-item > a:hover {
+            background: var(--secondary-color);
+        }
+
+        .menu-item.active > a {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .menu-item i {
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        .text {
+            transition: opacity var(--transition-speed);
+        }
+        /* Base state: hide text */
+.sidebar .text {
+    opacity: 0;
+    visibility: hidden; /* Added to prevent accidental clicks when hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    margin-left: 10px;
+    font-size: 15px;
+    white-space: nowrap; /* Prevents text from wrapping during transition */
+}
+
+/* Show text when sidebar is hovered OR when it's NOT collapsed */
+.sidebar:hover .text,
+.sidebar:not(.collapsed) .text {
+    opacity: 1;
+    visibility: visible;
+}
+
+        .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed);
+            background: var(--secondary-color);
+        }
+
+        .menu-item:hover .sub-menu,
+        .menu-item.active .sub-menu {
+            max-height: 500px;
+        }
+
+        .sub-menu li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-menu a {
+            display: block;
+            padding: 12px 15px 12px 55px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .sub-menu a:hover {
+            background: rgba(0, 184, 148, 0.1);
+            color: var(--primary-color);
+        }
+
+        .hover-description {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .sidebar.collapsed .menu-item:hover  {
+            opacity: 1;
+            visibility: visible;
+        }
+
+       
+
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 220px;
+            transition: margin-left var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.collapsed + .main-content {
+            margin-left: 70px;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .website-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 4px 4px 0;
+            transition: background-color var(--transition-speed);
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav a {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color var(--transition-speed);
+        }
+
+        .header-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-nav span {
+            color: var(--text-muted);
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-speed);
+            z-index: 1000;
+        }
+
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .order-dropdown-menu {
+            padding: 10px 0;
+        }
+
+        .order-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .order-dropdown-menu a:hover {
+            background: var(--secondary-color);
+        }
+
+        .order-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 10px 0;
+        }
+
+        .contact-dropdown-menu {
+            padding: 15px;
+            width: 250px;
+        }
+
+        .contact-dropdown-menu .customer-center {
+            display: block;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-dropdown-menu p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .contact-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 15px 0;
+        }
+
+        .icon-link {
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: inline-block;
+        }
+
+        .theme-switch-checkbox {
+            display: none;
+        }
+
+        .theme-switch-label {
+            display: block;
+            width: 50px;
+            height: 26px;
+            background: var(--text-muted);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-label:hover {
+            background: var(--primary-color);
+        }
+
+        .theme-switch-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-slider {
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition-speed);
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label .theme-switch-slider {
+            transform: translateX(24px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background var(--transition-speed);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--text-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section-description {
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        /* Tabs */
+        .tabs-container {
+            border-bottom: 1px solid var(--border-color);
+            margin: 0 0 1.5rem;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 1.5rem;
+            transition: color var(--transition-speed);
+            position: relative;
+        }
+
+        .tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding-top: 1.25rem;
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 4px 6px var(--shadow-color);
+            height: 100%;
+            background: var(--card-bg);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.25rem;
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .card-text {
+            margin: 0 0 1rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .btn-sm {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .btn-sm:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Badges */
+        .badge {
+            position: absolute;
+            top: 10px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .badge-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .badge-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .badge-left {
+            left: 10px;
+        }
+
+        .badge-right {
+            right: 10px;
+        }
+
+        /* Theme Cards */
+        .theme-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            position: relative;
+            height: 100%;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .theme-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .theme-content {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .theme-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: none;
+            padding: 6px 16px;
+            border-radius: 5px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-outline:hover {
+            background: var(--hover-bg);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 1.25rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-title {
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text {
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-color);
+            padding: 2.5rem 0 1.25rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-link i {
+            margin-right: 4px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.875rem;
+            text-align: left;
+        }
+
+        .footer-column h5 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin: 1.5rem 0 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .copyright span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Floating Utility Bar */
+        .floating-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .floating-link {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all var(--transition-speed);
+        }
+
+        .floating-link:last-child {
+            border-bottom: none;
+        }
+
+        .floating-link:hover {
+            color: var(--primary-color);
+            background: var(--hover-bg);
+        }
+
+        .floating-link i {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+
+        /* Background Colors */
+        .bg-light {
+            background: var(--bg-color);
+        }
+
+        .bg-secondary {
+            background: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .sidebar:not(.collapsed) {
+                transform: translateX(-100%);
+            }
+
+            .sidebar:not(.collapsed) + .main-content {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+            .tabs-container {
+                justify-content: center;
+            }
+
+            .tab {
+                margin-right: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .content-section {
+                padding: 2rem 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .floating-bar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-link {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .section-container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li class="menu-item" data-menu="hotel">
+                    <a href="#">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="text">Hotel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                        <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                    </ul>
+                    <div class="hover-description">Hotel</div>
+                </li>
+                <li class="menu-item" data-menu="flight">
+                    <a href="#">
+                        <i class="fa-solid fa-plane"></i>
+                        <span class="text">Airfare</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao andTaiwan</a></li>
+                        <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                        <li><a href="flightStatusAirfare.html">Flight status</a></li>
+                        <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                        <li><a href="guideAirfare.html">Airport Guide</a></li>
+                        <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                    </ul>
+                    <div class="hover-description">Airfare</div>
+                </li>
+                <!-- <li class="menu-item" data-menu="train">
+                    <a href="#">
+                        <i class="fa-solid fa-train"></i>
+                        <span class="text">Train tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Domestic train tickets</a></li>
+                        <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                    </ul>
+                    <div class="hover-description">Train tickets</div>
+                </li> -->
+                <li class="menu-item active" data-menu="travels">
+                    <a href="#">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="text">Travel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                        <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                        <li><a href="3.Private-group.html">Private tour</a></li>
+                        <li><a href="4.Free-walking.html">Independent travel</a></li>
+                        <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                        <li><a href="6.Day-trip.html">Day trip</a></li>
+                        <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                        <li><a href="8.Surrounding.html">Local tours</a></li>
+                        <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                        <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                        <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                        <li><a href="12.Visa.html">Visa</a></li>
+                        <li><a href="13.insures.html">Insurance</a></li>
+                        <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                        <li><a href="15.Destination.html">Destination</a></li>
+                    </ul>
+                    <div class="hover-description">Travel</div>
+                </li>
+                <li class="menu-item" data-menu="tickets">
+                    <a href="#">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span class="text">Tickets & Events</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sub-menu Item X</a></li>
+                        <li><a href="#">Sub-menu Item Y</a></li>
+                    </ul>
+                    <div class="hover-description">Tickets & Events</div>
+                </li>
+                <li class="menu-item" data-menu="Bus&Boat">
+                    <a href="#">
+                        <i class="fa-solid fa-bus"></i>
+                        <span class="text">Bus and boat tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="busTicket.html">Bus ticket</a></li>
+                        <li><a href="boatTicket.html">Boat ticket</a></li>
+                    </ul>
+                    <div class="hover-description">Bus and boat tickets</div>
+                </li>
+                <li class="menu-item" data-menu="Car">
+                    <a href="#">
+                        <i class="fa-solid fa-car"></i>
+                        <span class="text">Car</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                        <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                        <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                        <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                    </ul>
+                    <div class="hover-description">Car</div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+                    <span class="website-name">Kimberley</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything related to travel" id="searchInput">
+                    <button type="button" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <nav class="header-nav">
+                    <a href="#">Log in</a><span>|</span>
+                    <a href="#">Register</a><span>|</span>
+                    <div class="dropdown-container" id="myOrdersDropdown">
+                        <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu order-dropdown-menu">
+                            <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                            <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                            <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                            <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                            <hr>
+                            <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                        </div>
+                    </div>
+                    <span>|</span>
+                    <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                        <a href="#" class="dropdown-toggle">Contact customer service <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu contact-dropdown-menu">
+                            <a href="#" class="customer-center">Visit Customer Center ></a>
+                            <hr>
+                            <p>Domestic: 95010 / 400-830-6666</p>
+                            <p>HK: +852-3008-3295</p>
+                            <p>Macao: +86-21 3406-4888</p>
+                            <p>Taiwan: +86-21 3406-4888</p>
+                            <p>Other regions: +86-21 3406-4888</p>
+                        </div>
+                    </div>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+                    <div class="theme-toggle" id="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <span class="theme-switch-inner"></span>
+                            <span class="theme-switch-slider"></span>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="section-container">
+                <h1 class="hero-title">New Year's Eve Celebration · London Fireworks Show</h1>
+                <p class="hero-subtitle">Luxury hotel private viewing area | Custom New Year's dinner</p>
+                <button class="btn">Book Now</button>
+            </div>
+        </section>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="content-section">
+            <div class="section-container">
+                <h2 class="section-title">Destination</h2>
+                <p class="section-description">Explore the world with you.</p>
+
+                <!-- Tabs -->
+                <ul class="tabs-container">
+                    <li><button class="tab active">Hot</button></li>
+                    <li><button class="tab">Europe</button></li>
+                    <li><button class="tab">Asia</button></li>
+                    <li><button class="tab">Domestic</button></li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="cards-grid">
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1540959733332-8cbd5d1a44f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Japan" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Japan</h5>
+                            <p class="card-text">Explore the perfect blend of tradition and modernity</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥47,500</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kenya" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Kenya</h5>
+                            <p class="card-text">Witness the spectacular wildlife migration</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥85,000</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Iceland" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Iceland</h5>
+                            <p class="card-text">Northern lights and glacier adventures</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥99,500</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Maldives" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Maldives</h5>
+                            <p class="card-text">Paradise islands in the Indian Ocean</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥52,900</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thematic Selection Section -->
+        <section id="themes" class="content-section bg-light">
+            <div class="section-container">
+                <h2 class="section-title">Thematic Selection</h2>
+                <p class="section-description">Experience every way of travel.</p>
+
+                <div class="cards-grid">
+                    <!-- Theme Card 1 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Once in a Lifetime" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Once in a Lifetime</h5>
+                            <p class="card-text">Unforgettable lifetime travel experiences</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 2 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Family Time" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Family Time</h5>
+                            <p class="card-text">Carefully selected routes for family trips</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 3 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Private Jet Tours" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Private Jet Tours</h5>
+                            <p class="card-text">Custom private jet travel experiences</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 4 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Trains" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Luxury Trains</h5>
+                            <p class="card-text">Luxury trains through magnificent landscapes</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 5 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1526139334623-5b0f779a4c2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="World Heritage" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">World Heritage</h5>
+                            <p class="card-text">Explore UNESCO World Heritage sites</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 6 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Culinary Tours" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Culinary Tours</h5>
+                            <p class="card-text">Food and cultural exploration journeys</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 7 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Island Getaways" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Island Getaways</h5>
+                            <p class="card-text">Relaxing escapes to tropical paradises</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+
+                    <!-- Theme Card 8 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Adventure Expeditions" class="card-img">
+                        <div class="theme-icon">
+                            <i class="fas fa-hiking"></i>
+                        </div>
+                        <div class="theme-content">
+                            <h5 class="theme-title">Adventure Expeditions</h5>
+                            <p class="card-text">Thrilling adventures in nature's wonders</p>
+                            <button class="btn-outline">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hot Recommendations -->
+        <section id="hot" class="content-section">
+            <div class="section-container">
+                <h2 class="section-title">Hot Recommendations</h2>
+                <p class="section-description">Experience the season's beautiful journey</p>
+
+                <div class="cards-grid">
+                    <!-- Hot Card 1 -->
+                    <div class="card">
+                        <span class="badge badge-primary badge-left">Limited</span>
+                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Yunnan Tengchong" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Golden Horizon · Yunnan Tengchong</h5>
+                            <p class="card-text">5 days 4 nights · Hot spring wellness journey</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥17,800</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hot Card 2 -->
+                    <div class="card">
+                        <span class="badge badge-danger badge-right">Hot</span>
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Guizhou" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Mystery Southeast · Guizhou</h5>
+                            <p class="card-text">Huangguoshu + Libo + Xijiang Thousand Households Miao Village</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥21,900</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hot Card 3 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chaoshan" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Chaoshan 4 Days 3 Nights</h5>
+                            <p class="card-text">Tasting Chaoshan intangible cultural heritage cuisine</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥13,800</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overseas Routes -->
+        <section id="overseas" class="content-section bg-light">
+            <div class="section-container">
+                <h2 class="section-title">Selected Overseas Routes</h2>
+                <p class="section-description">The Limitless Possibilities of Exploration</p>
+
+                <div class="cards-grid">
+                    <!-- Overseas Card 1 -->
+                    <div class="card">
+                        <span class="badge badge-danger badge-right">Hot</span>
+                        <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Japan" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">First Trip Japan - Classic</h5>
+                            <p class="card-text">Kyoto + Hakone + Tokyo 8 days 7 nights</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥59,500</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overseas Card 2 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Morocco" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">North Africa Dreamland</h5>
+                            <p class="card-text">Morocco 10 days 8 nights</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥137,500</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overseas Card 3 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dubai" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">Faithful Paradise - Museum Magic Tour</h5>
+                            <p class="card-text">Dubai + Abu Dhabi</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥75,000</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overseas Card 4 -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="UK" class="card-img">
+                        <div class="card-content">
+                            <h5 class="card-title">UK 8 Days 7 Nights</h5>
+                            <p class="card-text">Private official guide exploration</p>
+                            <div class="card-footer">
+                                <span class="card-price">¥99,500</span>
+                                <button class="btn-sm">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="content-section bg-light">
+            <div class="section-container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-globe-americas feature-icon"></i>
+                        <h4 class="feature-title">Explore the World</h4>
+                        <p class="feature-text">Discover more travel inspiration</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-crown feature-icon"></i>
+                        <h4 class="feature-title">Premium Brand</h4>
+                        <p class="feature-text">High-end travel brand under <span style="color: var(--primary-color); font-weight: bold;">Kimberley</span></p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset feature-icon"></i>
+                        <h4 class="feature-title">Exclusive Service</h4>
+                        <p class="feature-text">Private VIP customer service one-on-one</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt feature-icon"></i>
+                        <h4 class="feature-title">Worry-Free Travel</h4>
+                        <p class="feature-text">7×24 hours travel service guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="section-container">
+                <div class="footer-links">
+                    <a href="#" class="footer-link"><i class="fas fa-hotel"></i> Hotel Listings (酒店大全)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-car"></i> Domestic Car Rental (国内租车)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-hot-tub"></i> Hot Spring Travel (温泉旅游)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-umbrella-beach"></i> Island Travel (海岛旅游)</a>
+                    <a href="#" class="footer-link" style="color: var(--primary-color);"><i class="fas fa-ellipsis-h"></i> More >></a>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h5>Popular Province Travel</h5>
+                        <a href="#">Yunnan</a>
+                        <a href="#">Hainan</a>
+                        <a href="#">Tibet</a>
+                        <a href="#">Sichuan</a>
+                        <a href="#">Taiwan</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Popular City Travel</h5>
+                        <a href="#">Sanya</a>
+                        <a href="#">Chengdu</a>
+                        <a href="#">Kunming</a>
+                        <a href="#">Xi'an</a>
+                        <a href="#">Lhasa</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Popular Theme Travel</h5>
+                        <a href="#">Parent-Child Tour</a>
+                        <a href="#">Honeymoon Tour</a>
+                        <a href="#">Self-Drive Tour</a>
+                        <a href="#">Cruise Tour</a>
+                        <a href="#">Ski Tour</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Help & Support</h5>
+                        <a href="#">How to Book</a>
+                        <a href="#">Payment Methods</a>
+                        <a href="#">Travel Safety</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">About Us</a>
+                    </div>
+                </div>
+
+                <p class="copyright">© 2025 <span>Kimberley</span> | All Rights Reserved</p>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<!-- Floating Utility Bar -->
+<div class="floating-bar">
+    <a href="#top" class="floating-link">
+        <i><i class="fas fa-chevron-up"></i></i> TOP
+    </a>
+    <a href="javascript:void(0);" title="Scan QR Code" class="floating-link" id="scanQR">
+        <i><i class="fas fa-qrcode"></i></i> Scan QR
+    </a>
+    <a href="javascript:void(0);" title="Customer Service" class="floating-link" id="customerService">
+        <i><i class="fas fa-headset"></i></i> Service
+    </a>
+</div>
+
+<script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+
+    sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+    });
+
+    // Theme Toggle
+    const themeSwitch = document.getElementById('theme-switch');
+    const body = document.body;
+
+    themeSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        themeSwitch.checked = true;
+        body.setAttribute('data-theme', 'dark');
+    }
+
+    // Search functionality
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+
+    function performSearch(query) {
+        if (query.trim()) {
+            alert('Searching for: ' + query);
+            // In a real application, you would redirect to search results or make an API call
+        }
+    }
+
+    searchButton.addEventListener('click', () => performSearch(searchInput.value));
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(searchInput.value);
+    });
+
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            // Here you would switch tab content in a real application
+            const tabName = this.textContent;
+            console.log('Switched to tab:', tabName);
+        });
+    });
+
+    // Card hover effects
+    const cards = document.querySelectorAll('.card, .theme-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Floating bar functionality
+    const scanQR = document.getElementById('scanQR');
+    const customerService = document.getElementById('customerService');
+
+    scanQR.addEventListener('click', function() {
+        alert('Scan QR code feature would open here');
+    });
+
+    customerService.addEventListener('click', function() {
+        alert('Customer service would open here');
+    });
+
+    // Smooth scroll to top
+    document.querySelector('a[href="#top"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Book Now buttons
+    const bookButtons = document.querySelectorAll('.btn-sm, .btn');
+    bookButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (this.classList.contains('btn-sm')) {
+                const card = this.closest('.card');
+                const title = card.querySelector('.card-title').textContent;
+                const price = card.querySelector('.card-price').textContent;
+                alert(`Booking: ${title}\nPrice: ${price}\nThis would open booking modal in a real application.`);
+            } else {
+                alert('New Year\'s Eve Celebration booking would open here');
+            }
+        });
+    });
+
+    // Explore buttons in theme cards
+    const exploreButtons = document.querySelectorAll('.btn-outline');
+    exploreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.theme-card');
+            const title = card.querySelector('.theme-title').textContent;
+            alert(`Exploring: ${title}\nThis would show more details about this theme.`);
+        });
+    });
+
+    // Mobile responsiveness for sidebar
+    if (window.innerWidth <= 992) {
+        sidebar.classList.add('collapsed');
+    }
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 992) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    });
+
+    // Add animation to cards when they come into view
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Set initial state for cards
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | Visa Services</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #00b894;
+            --primary-dark: #00a884;
+            --primary-light: #e8f7f3;
+            --bg-color: #ffffff;
+            --bg-card: #ffffff;
+            --bg-primary: #f1f8f5;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --text-light: #999999;
+            --text-secondary: #666666;
+            --secondary-color: #f1f8f5;
+            --border-color: #e0e0e0;
+            --border-light: #e0e0e0;
+            --accent-color: #e8f7f3;
+            --footer-bg: #f9f9f9;
+            --footer-text: #666666;
+            --table-header-bg: #f1f8f5;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-sm: rgba(0, 0, 0, 0.05);
+            --shadow-md: rgba(0, 0, 0, 0.15);
+            --danger-color: #e74c3c;
+            --warning-color: #ffc107;
+            --warning-text: #212529;
+            --price-color: #00b894;
+            --transition-speed: 0.3s;
+            --hover-bg: rgba(0, 184, 148, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00d8a7;
+            --primary-dark: #00b894;
+            --primary-light: #2a3d35;
+            --bg-color: #1a1a1a;
+            --bg-card: #2d2d2d;
+            --bg-primary: #252525;
+            --text-color: #ffffff;
+            --text-muted: #cccccc;
+            --text-light: #999999;
+            --text-secondary: #cccccc;
+            --secondary-color: #2a3d35;
+            --border-color: #444444;
+            --border-light: #444444;
+            --footer-bg: #252525;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --shadow-sm: rgba(0, 0, 0, 0.2);
+            --shadow-md: rgba(0, 0, 0, 0.25);
+            --warning-text: #ffffff;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 220px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            transition: width var(--transition-speed);
+            overflow-y: auto;
+            box-shadow: 2px 0 5px var(--shadow-color);
+        }
+
+        .sidebar.collapsed:not(:hover) {
+           width: 70px
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--secondary-color);
+        }
+
+        .sidebar nav {
+            padding-top: 50px;
+        }
+
+        .menu-item {
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-item > a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .menu-item > a:hover {
+            background: var(--secondary-color);
+        }
+
+        .menu-item.active > a {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .menu-item i {
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        .text {
+            transition: opacity var(--transition-speed);
+            opacity: 1;
+        }
+/* Show text when sidebar is NOT collapsed OR when hovered */
+/* Base state: hide text */
+.sidebar .text {
+    opacity: 0;
+    visibility: hidden; /* Added to prevent accidental clicks when hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    margin-left: 10px;
+    font-size: 15px;
+    white-space: nowrap; /* Prevents text from wrapping during transition */
+}
+
+/* Show text when sidebar is hovered OR when it's NOT collapsed */
+.sidebar:hover .text,
+.sidebar:not(.collapsed) .text {
+    opacity: 1;
+    visibility: visible;
+}
+        .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed);
+            background: var(--secondary-color);
+        }
+
+        .menu-item:hover .sub-menu,
+        .menu-item.active .sub-menu {
+            max-height: 500px;
+        }
+
+        .sub-menu li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-menu a {
+            display: block;
+            padding: 12px 15px 12px 55px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .sub-menu a:hover {
+            background: rgba(0, 184, 148, 0.1);
+            color: var(--primary-color);
+        }
+
+        .hover-description {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .sidebar.collapsed .menu-item:hover  {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 220px;
+            transition: margin-left var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.collapsed + .main-content {
+            margin-left: 70px;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .website-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 4px 4px 0;
+            transition: background-color var(--transition-speed);
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav a {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color var(--transition-speed);
+        }
+
+        .header-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-nav span {
+            color: var(--text-muted);
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-speed);
+            z-index: 1000;
+        }
+
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .order-dropdown-menu {
+            padding: 10px 0;
+        }
+
+        .order-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .order-dropdown-menu a:hover {
+            background: var(--secondary-color);
+        }
+
+        .order-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 10px 0;
+        }
+
+        .contact-dropdown-menu {
+            padding: 15px;
+            width: 250px;
+        }
+
+        .contact-dropdown-menu .customer-center {
+            display: block;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-dropdown-menu p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .contact-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 15px 0;
+        }
+
+        .icon-link {
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: inline-block;
+        }
+
+        .theme-switch-checkbox {
+            display: none;
+        }
+
+        .theme-switch-label {
+            display: block;
+            width: 50px;
+            height: 26px;
+            background: var(--text-muted);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-label:hover {
+            background: var(--primary-color);
+        }
+
+        .theme-switch-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-slider {
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition-speed);
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label .theme-switch-slider {
+            transform: translateX(24px);
+        }
+
+        /* Section Container */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-card {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px var(--shadow-sm);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-title {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .search-form {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.375rem 0 0 0.375rem;
+            outline: none;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .search-button {
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            border: none;
+            border-radius: 0 0.375rem 0.375rem 0;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        .search-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Service Highlights */
+        .highlights-section {
+            background-color: var(--bg-primary);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .highlights-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .highlight-item {
+            flex: 1 1 25%;
+            min-width: 200px;
+            padding: 0 15px;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .highlight-title {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .highlight-text {
+            color: var(--text-muted);
+        }
+
+        /* Regions Section */
+        .regions-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            font-size: 2rem;
+        }
+
+        .regions-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .region-card {
+            flex: 1 1 33.333%;
+            padding: 15px;
+        }
+
+        .region-inner {
+            border: none;
+            border-radius: 10px;
+            transition: transform var(--transition-speed);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px var(--shadow-sm);
+            background: var(--bg-card);
+        }
+
+        .region-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .region-header {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            padding: 10px 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-weight: bold;
+        }
+
+        .region-content {
+            padding: 15px;
+        }
+
+        .country-tag {
+            display: inline-block;
+            background-color: var(--bg-primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all var(--transition-speed);
+        }
+
+        .country-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+        }
+
+        .flag-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Super VIP Section */
+        .vip-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--bg-card);
+            padding: 50px 0;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .vip-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .vip-title {
+            flex: 1 1 66.666%;
+            margin-bottom: 0.75rem;
+        }
+
+        .vip-subtitle {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .vip-badge {
+            flex: 1 1 33.333%;
+            text-align: right;
+        }
+
+        .badge-premium {
+            background-color: var(--bg-card);
+            color: var(--warning-text);
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+        }
+
+        .vip-cards {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .vip-card {
+            flex: 1 1 33.333%;
+            padding: 15px;
+        }
+
+        .vip-card-inner {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--shadow-md);
+            transition: transform var(--transition-speed);
+        }
+
+        .vip-card-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .vip-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .vip-card-title {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .vip-card-text {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .vip-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: var(--price-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .btn-small {
+            padding: 0.375rem 0.75rem;
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        .btn-small:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Popular Visas Section */
+        .popular-section {
+            padding: 3rem 0;
+            background-color: var(--bg-primary);
+        }
+
+        .popular-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .popular-main {
+            flex: 1 1 66.666%;
+            padding: 15px;
+        }
+
+        .popular-sidebar {
+            flex: 1 1 33.333%;
+            padding: 15px;
+        }
+
+        .popular-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .popular-card {
+            flex: 1 1 50%;
+            padding: 15px;
+        }
+
+        .popular-card-inner {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px var(--shadow-sm);
+            margin-bottom: 20px;
+            transition: transform var(--transition-speed);
+            background: var(--bg-card);
+        }
+
+        .popular-card-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .popular-card-content {
+            padding: 1rem;
+        }
+
+        .popular-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .popular-card-title {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .popular-card-text {
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .popular-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-outline {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+        }
+
+        /* Deals Sidebar */
+        .deals-sidebar {
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background: var(--bg-card);
+        }
+
+        .deals-header {
+            background-color: var(--warning-color);
+            color: var(--warning-text);
+            padding: 0.75rem 1rem;
+            font-weight: bold;
+        }
+
+        .deals-content {
+            padding: 1rem;
+        }
+
+        .deals-description {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .deal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .deal-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .deal-title {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .deal-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Visa Free Destinations */
+        .visa-free-section {
+            background-color: var(--bg-card);
+            padding: 50px 0;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .visa-free-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .visa-free-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .visa-free-card {
+            flex: 1 1 33.333%;
+            padding: 15px;
+        }
+
+        .visa-free-inner {
+            border: none;
+            box-shadow: 0 1px 3px var(--shadow-sm);
+            border-radius: 0.375rem;
+            text-align: center;
+            background: var(--bg-primary);
+        }
+
+        .visa-free-content {
+            padding: 1rem;
+        }
+
+        .visa-free-img {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .visa-free-badge {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+        }
+
+        /* Visa Free Grid */
+        .visa-free-grid {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .view-all {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all var(--transition-speed);
+        }
+
+        .view-all:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+        }
+
+        .visa-free-grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .visa-free-grid-card {
+            flex: 1 1 25%;
+            padding: 15px;
+        }
+
+        .visa-free-grid-inner {
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all var(--transition-speed);
+            position: relative;
+            background: var(--bg-card);
+        }
+
+        .visa-free-grid-inner:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .visa-type-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .visa-type-badge.arrival {
+            background-color: var(--warning-color);
+            color: var(--warning-text);
+        }
+
+        .visa-free-grid-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Assessment Section */
+        .assessment-section {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .assessment-card {
+            flex: 1 1 50%;
+            padding: 15px;
+        }
+
+        .assessment-inner {
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background: var(--bg-card);
+        }
+
+        .assessment-header {
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .assessment-title {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .assessment-content {
+            padding: 1rem;
+        }
+
+        .assessment-text {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .assessment-form {
+            display: flex;
+            margin-bottom: 0.75rem;
+        }
+
+        .country-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .country-tag-small {
+            background-color: var(--bg-primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: all var(--transition-speed);
+        }
+
+        .country-tag-small:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            cursor: pointer;
+        }
+
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .booking-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .booking-title {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .booking-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .status-badge {
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--bg-primary);
+            padding: 50px 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .faq-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .faq-card {
+            flex: 1 1 50%;
+            padding: 15px;
+        }
+
+        .faq-inner {
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+            background: var(--bg-card);
+        }
+
+        .faq-content {
+            padding: 1rem;
+        }
+
+        .faq-question {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+        }
+
+        /* Process Steps */
+        .process-section {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .process-title {
+            flex: 1 1 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .process-step {
+            flex: 1 1 25%;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--bg-card);
+            border-radius: 50%;
+            line-height: 40px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .step-title {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .step-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-primary);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-link i {
+            margin-right: 0.25rem;
+        }
+
+        .footer-grid {
+            margin-top: 30px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .footer-column {
+            flex: 1 1 25%;
+            min-width: 200px;
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .copyright span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Floating Utility Bar */
+        .floating-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-sm);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .floating-link {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all var(--transition-speed);
+        }
+
+        .floating-link:last-child {
+            border-bottom: none;
+        }
+
+        .floating-link:hover {
+            color: var(--primary-color);
+            background: var(--hover-bg);
+        }
+
+        .floating-link i {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .region-card, .vip-card, .visa-free-card {
+                flex: 1 1 50%;
+            }
+
+            .visa-free-grid-card {
+                flex: 1 1 50%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .sidebar:not(.collapsed) {
+                transform: translateX(-100%);
+            }
+
+            .sidebar:not(.collapsed) + .main-content {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .popular-main, .popular-sidebar {
+                flex: 1 1 100%;
+            }
+
+            .assessment-card {
+                flex: 1 1 100%;
+            }
+
+            .faq-card {
+                flex: 1 1 100%;
+            }
+
+            .process-step {
+                flex: 1 1 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+            .highlight-item {
+                flex: 1 1 50%;
+            }
+
+            .region-card, .vip-card, .visa-free-card, .visa-free-grid-card {
+                flex: 1 1 100%;
+            }
+
+            .popular-card {
+                flex: 1 1 100%;
+            }
+
+            .footer-column {
+                flex: 1 1 50%;
+            }
+
+            .floating-bar {
+                display: none;
+            }
+
+            .vip-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .vip-badge {
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .highlight-item {
+                flex: 1 1 100%;
+            }
+
+            .process-step {
+                flex: 1 1 100%;
+            }
+
+            .footer-column {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+
+            .footer-link {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li class="menu-item" data-menu="hotel">
+                    <a href="#">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="text">Hotel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                        <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                    </ul>
+                    <div class="hover-description">Hotel</div>
+                </li>
+                <li class="menu-item" data-menu="flight">
+                    <a href="#">
+                        <i class="fa-solid fa-plane"></i>
+                        <span class="text">Airfare</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao andTaiwan</a></li>
+                        <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                        <li><a href="flightStatusAirfare.html">Flight status</a></li>
+                        <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                        <li><a href="guideAirfare.html">Airport Guide</a></li>
+                        <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                    </ul>
+                    <div class="hover-description">Airfare</div>
+                </li>
+                <!-- <li class="menu-item" data-menu="train">
+                    <a href="#">
+                        <i class="fa-solid fa-train"></i>
+                        <span class="text">Train tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Domestic train tickets</a></li>
+                        <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                    </ul>
+                    <div class="hover-description">Train tickets</div>
+                </li> -->
+                <li class="menu-item active" data-menu="travels">
+                    <a href="#">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="text">Travel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                        <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                        <li><a href="3.Private-group.html">Private tour</a></li>
+                        <li><a href="4.Free-walking.html">Independent travel</a></li>
+                        <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                        <li><a href="6.Day-trip.html">Day trip</a></li>
+                        <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                        <li><a href="8.Surrounding.html">Local tours</a></li>
+                        <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                        <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                        <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                        <li><a href="12.Visa.html">Visa</a></li>
+                        <li><a href="13.insures.html">Insurance</a></li>
+                        <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                        <li><a href="15.Destination.html">Destination</a></li>
+                    </ul>
+                    <div class="hover-description">Travel</div>
+                </li>
+                <li class="menu-item" data-menu="tickets">
+                    <a href="#">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span class="text">Tickets & Events</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sub-menu Item X</a></li>
+                        <li><a href="#">Sub-menu Item Y</a></li>
+                    </ul>
+                    <div class="hover-description">Tickets & Events</div>
+                </li>
+                <li class="menu-item" data-menu="Bus&Boat">
+                    <a href="#">
+                        <i class="fa-solid fa-bus"></i>
+                        <span class="text">Bus and boat tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="busTicket.html">Bus ticket</a></li>
+                        <li><a href="boatTicket.html">Boat ticket</a></li>
+                    </ul>
+                    <div class="hover-description">Bus and boat tickets</div>
+                </li>
+                <li class="menu-item" data-menu="Car">
+                    <a href="#">
+                        <i class="fa-solid fa-car"></i>
+                        <span class="text">Car</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                        <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                        <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                        <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                    </ul>
+                    <div class="hover-description">Car</div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+                    <span class="website-name">Kimberley</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything related to travel" id="searchInput">
+                    <button type="button" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <nav class="header-nav">
+                    <a href="#">Log in</a><span>|</span>
+                    <a href="#">Register</a><span>|</span>
+                    <div class="dropdown-container" id="myOrdersDropdown">
+                        <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu order-dropdown-menu">
+                            <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                            <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                            <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                            <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                            <hr>
+                            <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                        </div>
+                    </div>
+                    <span>|</span>
+                    <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                        <a href="#" class="dropdown-toggle">Contact customer service <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu contact-dropdown-menu">
+                            <a href="#" class="customer-center">Visit Customer Center ></a>
+                            <hr>
+                            <p>Domestic: 95010 / 400-830-6666</p>
+                            <p>HK: +852-3008-3295</p>
+                            <p>Macao: +86-21 3406-4888</p>
+                            <p>Taiwan: +86-21 3406-4888</p>
+                            <p>Other regions: +86-21 3406-4888</p>
+                        </div>
+                    </div>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+                    <div class="theme-toggle" id="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <span class="theme-switch-inner"></span>
+                            <span class="theme-switch-slider"></span>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="section-container">
+                <h1 class="hero-title">Global Visa Services</h1>
+                <p class="hero-subtitle">Professional, fast, and reliable visa application services</p>
+                <div class="search-box">
+                    <div class="search-card">
+                        <h4 class="search-title">Find Your Visa Service</h4>
+                        <div class="search-form">
+                            <input type="text" placeholder="Enter country/region" class="search-input" id="visaSearchInput">
+                            <button class="search-button" id="visaSearchButton">Search</button>
+                        </div>
+                        <a href="#" class="btn-primary">Apply Online Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Highlights -->
+        <section class="highlights-section">
+            <div class="section-container">
+                <div class="highlights-container">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-user-check"></i></div>
+                        <h5 class="highlight-title">Customer First</h5>
+                        <p class="highlight-text">Professional Service</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+                        <h5 class="highlight-title">Fast Service</h5>
+                        <p class="highlight-text">Real-time Control</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-heart"></i></div>
+                        <h5 class="highlight-title">Warmly Signed</h5>
+                        <p class="highlight-text">Without Worry</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h5 class="highlight-title">Responsibility</h5>
+                        <p class="highlight-text">Guaranteed Service</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regions Section -->
+        <section class="regions-section">
+            <div class="section-container">
+                <h2 class="section-title">Visa Services by Region</h2>
+                <div class="regions-container">
+                    <!-- Asia Region -->
+                    <div class="region-card">
+                        <div class="region-inner">
+                            <div class="region-header">Asia</div>
+                            <div class="region-content">
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇯🇵</span> Japan
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇰🇷</span> Korea
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇻🇳</span> Vietnam
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇮🇩</span> Indonesia
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇰🇭</span> Cambodia
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇲🇾</span> Malaysia
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇸🇬</span> Singapore
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Europe Region -->
+                    <div class="region-card">
+                        <div class="region-inner">
+                            <div class="region-header">Europe</div>
+                            <div class="region-content">
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇬🇧</span> United Kingdom
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇮🇹</span> Italy
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇪🇸</span> Spain
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇫🇷</span> France
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇩🇪</span> Germany
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇹🇷</span> Turkey
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Americas & Oceania Region -->
+                    <div class="region-card">
+                        <div class="region-inner">
+                            <div class="region-header">Americas & Oceania</div>
+                            <div class="region-content">
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇺🇸</span> United States
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇨🇦</span> Canada
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇦🇺</span> Australia
+                                </a>
+                                <a href="#" class="country-tag">
+                                    <span class="flag-icon">🇳🇿</span> New Zealand
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Super VIP Section -->
+        <section class="vip-section">
+            <div class="section-container">
+                <div class="vip-header">
+                    <div class="vip-title">
+                        <h2>Super VIP Services</h2>
+                        <p class="vip-subtitle">Online pre-trial materials and professional production of visa materials</p>
+                    </div>
+                    <div class="vip-badge">
+                        <span class="badge-premium">Premium Service</span>
+                    </div>
+                </div>
+
+                <div class="vip-cards">
+                    <!-- Italian Visa -->
+                    <div class="vip-card">
+                        <div class="vip-card-inner">
+                            <div class="vip-card-header">
+                                <span class="flag-icon">🇮🇹</span>
+                                <h5 class="vip-card-title">Italian Personal Tourist Visa</h5>
+                            </div>
+                            <p class="vip-card-text">Official special emergency processing with professional materials and program analysis</p>
+                            <div class="vip-card-footer">
+                                <span class="price">¥1088</span>
+                                <a href="#" class="btn-small">Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- US Visa -->
+                    <div class="vip-card">
+                        <div class="vip-card-inner">
+                            <div class="vip-card-header">
+                                <span class="flag-icon">🇺🇸</span>
+                                <h5 class="vip-card-title">US Personal Tourist Visa</h5>
+                            </div>
+                            <p class="vip-card-text">Urgent processing with accompanying signature and interview tutoring</p>
+                            <div class="vip-card-footer">
+                                <span class="price">¥4188</span>
+                                <a href="#" class="btn-small">Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- German Visa -->
+                    <div class="vip-card">
+                        <div class="vip-card-inner">
+                            <div class="vip-card-header">
+                                <span class="flag-icon">🇩🇪</span>
+                                <h5 class="vip-card-title">German Personal Tourist Visa</h5>
+                            </div>
+                            <p class="vip-card-text">Urgent Shanghai visa delivery with fingerprint assistance</p>
+                            <div class="vip-card-footer">
+                                <span class="price">¥2288</span>
+                                <a href="#" class="btn-small">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Visas -->
+        <section class="popular-section">
+            <div class="section-container">
+                <h2 class="section-title">Popular Visas</h2>
+                <div class="popular-container">
+                    <div class="popular-main">
+                        <div class="popular-grid">
+                            <!-- Japan Visa 1 -->
+                            <div class="popular-card">
+                                <div class="popular-card-inner">
+                                    <div class="popular-card-content">
+                                        <div class="popular-card-header">
+                                            <span class="flag-icon">🇯🇵</span>
+                                            <h5 class="popular-card-title">Japan Personal Tourist Visa</h5>
+                                        </div>
+                                        <p class="popular-card-text">Single entry, 15 days stay</p>
+                                        <div class="popular-card-footer">
+                                            <span class="price">¥428</span>
+                                            <a href="#" class="btn-outline">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Japan Visa 2 -->
+                            <div class="popular-card">
+                                <div class="popular-card-inner">
+                                    <div class="popular-card-content">
+                                        <div class="popular-card-header">
+                                            <span class="flag-icon">🇯🇵</span>
+                                            <h5 class="popular-card-title">Japan Personal Tourist Visa</h5>
+                                        </div>
+                                        <p class="popular-card-text">Single entry, 15 days stay</p>
+                                        <div class="popular-card-footer">
+                                            <span class="price">¥228</span>
+                                            <a href="#" class="btn-outline">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- South Korea Visa -->
+                            <div class="popular-card">
+                                <div class="popular-card-inner">
+                                    <div class="popular-card-content">
+                                        <div class="popular-card-header">
+                                            <span class="flag-icon">🇰🇷</span>
+                                            <h5 class="popular-card-title">South Korea Individual Tourist Visa</h5>
+                                        </div>
+                                        <p class="popular-card-text">Single entry, 30 days stay</p>
+                                        <div class="popular-card-footer">
+                                            <span class="price">Real-time pricing</span>
+                                            <a href="#" class="btn-outline">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cambodia Visa -->
+                            <div class="popular-card">
+                                <div class="popular-card-inner">
+                                    <div class="popular-card-content">
+                                        <div class="popular-card-header">
+                                            <span class="flag-icon">🇰🇭</span>
+                                            <h5 class="popular-card-title">Cambodia Individual Tourist Visa</h5>
+                                        </div>
+                                        <p class="popular-card-text">Single entry, 30 days stay</p>
+                                        <div class="popular-card-footer">
+                                            <span class="price">¥248</span>
+                                            <a href="#" class="btn-outline">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deals Sidebar -->
+                    <div class="popular-sidebar">
+                        <div class="deals-sidebar">
+                            <div class="deals-header">
+                                <h5>Offers for the Month</h5>
+                            </div>
+                            <div class="deals-content">
+                                <p class="deals-description">Give big favors and what do you hesitate? Go up</p>
+                                <div class="deal-item">
+                                    <div>
+                                        <h6 class="deal-title">3-month single visa for personal travel</h6>
+                                        <small class="deal-subtitle">Multiple destinations</small>
+                                    </div>
+                                    <span class="price">Real-time Pricing</span>
+                                </div>
+                                <div class="deal-item">
+                                    <div>
+                                        <h6 class="deal-title">Australia 1 year multiple entry visa</h6>
+                                        <small class="deal-subtitle">Tourist visa</small>
+                                    </div>
+                                    <span class="price">¥1408</span>
+                                </div>
+                                <div class="deal-item">
+                                    <div>
+                                        <h6 class="deal-title">French personal tourist visa</h6>
+                                        <small class="deal-subtitle">Schengen area</small>
+                                    </div>
+                                    <span class="price">¥388</span>
+                                </div>
+                                <div class="deal-item">
+                                    <div>
+                                        <h6 class="deal-title">Turkey 180 days multiple entry visa</h6>
+                                        <small class="deal-subtitle">E-visa available</small>
+                                    </div>
+                                    <span class="price">¥535</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visa Free Destinations -->
+        <section class="visa-free-section">
+            <div class="section-container">
+                <h2 class="visa-free-title">Popular Visa Waiver / Visa-on-Arrival Destinations</h2>
+                <div class="visa-free-container">
+                    <!-- New Zealand -->
+                    <div class="visa-free-card">
+                        <div class="visa-free-inner">
+                            <div class="visa-free-content">
+                                <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="New Zealand" class="visa-free-img">
+                                <h5>New Zealand</h5>
+                                <p>Visa-free for up to 90 days</p>
+                                <span class="visa-free-badge">Visa-Free</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Samoa -->
+                    <div class="visa-free-card">
+                        <div class="visa-free-inner">
+                            <div class="visa-free-content">
+                                <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Samoa" class="visa-free-img">
+                                <h5>Samoa</h5>
+                                <p>Visa-free for up to 60 days</p>
+                                <span class="visa-free-badge">Visa-Free</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mauritius -->
+                    <div class="visa-free-card">
+                        <div class="visa-free-inner">
+                            <div class="visa-free-content">
+                                <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mauritius" class="visa-free-img">
+                                <h5>Mauritius</h5>
+                                <p>Visa-free for up to 90 days</p>
+                                <span class="visa-free-badge">Visa-Free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visa Free/Visa on Arrival Grid -->
+        <section class="visa-free-grid">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Visa-Free / Visa-on-Arrival</h2>
+                    <a href="#" class="view-all">View all <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+                <div class="visa-free-grid-container">
+                    <!-- New Zealand -->
+                    <div class="visa-free-grid-card">
+                        <div class="visa-free-grid-inner">
+                            <span class="visa-type-badge">Visa-Free</span>
+                            <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="New Zealand" class="visa-free-grid-img">
+                            <h5>New Zealand</h5>
+                            <p class="highlight-text">Up to 90 days</p>
+                            <a href="#" class="btn-outline">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Samoa -->
+                    <div class="visa-free-grid-card">
+                        <div class="visa-free-grid-inner">
+                            <span class="visa-type-badge">Visa-Free</span>
+                            <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Samoa" class="visa-free-grid-img">
+                            <h5>Samoa</h5>
+                            <p class="highlight-text">Up to 60 days</p>
+                            <a href="#" class="btn-outline">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Mauritius -->
+                    <div class="visa-free-grid-card">
+                        <div class="visa-free-grid-inner">
+                            <span class="visa-type-badge">Visa-Free</span>
+                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mauritius" class="visa-free-grid-img">
+                            <h5>Mauritius</h5>
+                            <p class="highlight-text">Up to 90 days</p>
+                            <a href="#" class="btn-outline">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- UAE -->
+                    <div class="visa-free-grid-card">
+                        <div class="visa-free-grid-inner">
+                            <span class="visa-type-badge arrival">Visa on Arrival</span>
+                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="UAE" class="visa-free-grid-img">
+                            <h5>UAE</h5>
+                            <p class="highlight-text">30 days visa</p>
+                            <a href="#" class="btn-outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment & Latest Bookings -->
+                <div class="assessment-section">
+                    <!-- Visa Assessment -->
+                    <div class="assessment-card">
+                        <div class="assessment-inner">
+                            <div class="assessment-header">
+                                <h5 class="assessment-title">Visa Assessment Test</h5>
+                            </div>
+                            <div class="assessment-content">
+                                <p class="assessment-text">Worried that your visa might not pass? Take our assessment test.</p>
+                                <div class="assessment-form">
+                                    <input type="text" placeholder="Enter country or region name" class="search-input" id="assessmentInput">
+                                    <button class="search-button" id="assessmentButton">Search</button>
+                                </div>
+                                <div class="country-tags">
+                                    <span class="country-tag-small">Malaysia</span>
+                                    <span class="country-tag-small">Singapore</span>
+                                    <span class="country-tag-small">Korea</span>
+                                    <span class="country-tag-small">United States</span>
+                                    <span class="country-tag-small">Australia</span>
+                                    <span class="country-tag-small">France</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Latest Bookings -->
+                    <div class="assessment-card">
+                        <div class="assessment-inner">
+                            <div class="assessment-header">
+                                <h5 class="assessment-title">Latest Visa Bookings</h5>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="booking-item">
+                                    <div>
+                                        <h6 class="booking-title">Japan personal tourist visa 3 years multiple entry</h6>
+                                        <small class="booking-subtitle">424 booked 8 minutes ago</small>
+                                    </div>
+                                    <span class="status-badge">Popular</span>
+                                </div>
+                                <div class="booking-item">
+                                    <div>
+                                        <h6 class="booking-title">Vietnam personal tourist visa additional paper service</h6>
+                                        <small class="booking-subtitle">458 booked 12 minutes ago</small>
+                                    </div>
+                                    <span class="status-badge">New</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-container">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <!-- FAQ 1 -->
+                    <div class="faq-card">
+                        <div class="faq-inner">
+                            <div class="faq-content">
+                                <h5 class="faq-question">Q: Does the inability to provide individual materials affect the approval rate?</h5>
+                                <p class="faq-answer">Our company requires materials as specified by the Consulate. If individual materials cannot be provided, it may affect your approval rate. Please prepare as required...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-card">
+                        <div class="faq-inner">
+                            <div class="faq-content">
+                                <h5 class="faq-question">Q: Time of interview visa</h5>
+                                <p class="faq-answer">Interview times are determined by the consulate. We will try to coordinate within the allowed time frame. We recommend arranging your itinerary early to avoid delays.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-card">
+                        <div class="faq-inner">
+                            <div class="faq-content">
+                                <h5 class="faq-question">Q: If I have had a Schengen visa before, can the materials be simplified?</h5>
+                                <p class="faq-answer">Yes, visa requirements for each country are different. Having a visa from another country may simplify the current application process for some national visas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-card">
+                        <div class="faq-inner">
+                            <div class="faq-content">
+                                <h5 class="faq-question">Q: How important is the interview preparation?</h5>
+                                <p class="faq-answer">Case introduction: Ms. Wang applied for a European single-entry personal tourist visa, was approved, and returned successfully. The consulate required Ms. Wang to...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Steps -->
+                <div class="process-section">
+                    <h3 class="process-title">Visa Application Process</h3>
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h5 class="step-title">Submit Order Online</h5>
+                        <p class="step-description">Fill out the application form and submit required documents</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h5 class="step-title">Submit Visa Materials</h5>
+                        <p class="step-description">Our experts review and prepare your application</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h5 class="step-title">Visa Submission (Interview)</h5>
+                        <p class="step-description">We submit to embassy/consulate, assist with interview if needed</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h5 class="step-title">Visa Issued & Delivery</h5>
+                        <p class="step-description">Receive your visa and travel documents</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="section-container">
+                <div class="footer-links">
+                    <a href="#" class="footer-link"><i class="fas fa-hotel"></i> Hotel Listings (酒店大全)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-car"></i> Domestic Car Rental (国内租车)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-hot-tub"></i> Hot Spring Travel (温泉旅游)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-umbrella-beach"></i> Island Travel (海岛旅游)</a>
+                    <a href="#" class="footer-link" style="color: var(--primary-color);"><i class="fas fa-ellipsis-h"></i> More >></a>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-container">
+                        <div class="footer-column">
+                            <h5>Popular Province Travel</h5>
+                            <a href="#">Yunnan</a>
+                            <a href="#">Hainan</a>
+                            <a href="#">Tibet</a>
+                            <a href="#">Sichuan</a>
+                            <a href="#">Taiwan</a>
+                        </div>
+                        <div class="footer-column">
+                            <h5>Popular City Travel</h5>
+                            <a href="#">Sanya</a>
+                            <a href="#">Chengdu</a>
+                            <a href="#">Kunming</a>
+                            <a href="#">Xi'an</a>
+                            <a href="#">Lhasa</a>
+                        </div>
+                        <div class="footer-column">
+                            <h5>Popular Theme Travel</h5>
+                            <a href="#">Parent-Child Tour</a>
+                            <a href="#">Honeymoon Tour</a>
+                            <a href="#">Self-Drive Tour</a>
+                            <a href="#">Cruise Tour</a>
+                            <a href="#">Ski Tour</a>
+                        </div>
+                        <div class="footer-column">
+                            <h5>Help & Support</h5>
+                            <a href="#">How to Book</a>
+                            <a href="#">Payment Methods</a>
+                            <a href="#">Travel Safety</a>
+                            <a href="#">Contact Us</a>
+                            <a href="#">About Us</a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="copyright">© 2025 <span>Kemberley</span> | All Rights Reserved</p>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<!-- Floating Utility Bar -->
+<div class="floating-bar">
+    <a href="#top" class="floating-link">
+        <i><i class="fas fa-chevron-up"></i></i> TOP
+    </a>
+    <a href="javascript:void(0);" title="Scan QR Code" class="floating-link" id="scanQR">
+        <i><i class="fas fa-qrcode"></i></i> Scan QR
+    </a>
+    <a href="javascript:void(0);" title="Customer Service" class="floating-link" id="customerService">
+        <i><i class="fas fa-headset"></i></i> Service
+    </a>
+</div>
+
+<script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+
+    sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+    });
+
+    // Theme Toggle
+    const themeSwitch = document.getElementById('theme-switch');
+    const body = document.body;
+
+    themeSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        themeSwitch.checked = true;
+        body.setAttribute('data-theme', 'dark');
+    }
+
+    // Search functionality
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+    const visaSearchButton = document.getElementById('visaSearchButton');
+    const visaSearchInput = document.getElementById('visaSearchInput');
+    const assessmentButton = document.getElementById('assessmentButton');
+    const assessmentInput = document.getElementById('assessmentInput');
+
+    function performSearch(query, type) {
+        if (query.trim()) {
+            alert(`Searching ${type} for: ${query}`);
+            // In a real application, you would redirect to search results or make an API call
+        }
+    }
+
+    searchButton.addEventListener('click', () => performSearch(searchInput.value, 'travel'));
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(searchInput.value, 'travel');
+    });
+
+    visaSearchButton.addEventListener('click', () => performSearch(visaSearchInput.value, 'visa'));
+    visaSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(visaSearchInput.value, 'visa');
+    });
+
+    assessmentButton.addEventListener('click', () => performSearch(assessmentInput.value, 'assessment'));
+    assessmentInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(assessmentInput.value, 'assessment');
+    });
+
+    // Country tags click
+    const countryTags = document.querySelectorAll('.country-tag, .country-tag-small');
+    countryTags.forEach(tag => {
+        tag.addEventListener('click', function(e) {
+            if (this.classList.contains('country-tag-small')) {
+                const country = this.textContent;
+                assessmentInput.value = country;
+                performSearch(country, 'assessment');
+            } else {
+                const country = this.querySelector('span').nextSibling.textContent.trim();
+                visaSearchInput.value = country;
+                performSearch(country, 'visa');
+            }
+        });
+    });
+
+    // Card hover effects
+    const cards = document.querySelectorAll('.region-inner, .vip-card-inner, .popular-card-inner, .visa-free-grid-inner');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Floating bar functionality
+    const scanQR = document.getElementById('scanQR');
+    const customerService = document.getElementById('customerService');
+
+    scanQR.addEventListener('click', function() {
+        alert('Scan QR code feature would open here');
+    });
+
+    customerService.addEventListener('click', function() {
+        alert('Customer service would open here');
+    });
+
+    // Smooth scroll to top
+    document.querySelector('a[href="#top"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Details buttons
+    const detailButtons = document.querySelectorAll('.btn-small, .btn-outline');
+    detailButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            let visaType = '';
+            let price = '';
+
+            if (this.classList.contains('btn-small')) {
+                const card = this.closest('.vip-card-inner');
+                visaType = card.querySelector('.vip-card-title').textContent;
+                price = card.querySelector('.price').textContent;
+            } else {
+                const card = this.closest('.popular-card-inner, .visa-free-grid-inner');
+                if (card.querySelector('.popular-card-title')) {
+                    visaType = card.querySelector('.popular-card-title').textContent;
+                    price = card.querySelector('.price').textContent;
+                } else {
+                    visaType = card.querySelector('h5').textContent;
+                    const visaBadge = card.querySelector('.visa-type-badge').textContent;
+                    visaType = `${visaType} (${visaBadge})`;
+                }
+            }
+
+            alert(`Visa Details:\n${visaType}\nPrice: ${price}\nThis would open detailed information in a real application.`);
+        });
+    });
+
+    // Apply Online button
+    document.querySelector('.btn-primary').addEventListener('click', function(e) {
+        e.preventDefault();
+        const country = visaSearchInput.value.trim() || 'selected country';
+        alert(`Starting visa application for: ${country}\nThis would open the application form.`);
+    });
+
+    // View all button
+    document.querySelector('.view-all').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Showing all visa-free and visa-on-arrival destinations');
+    });
+
+    // Mobile responsiveness for sidebar
+    if (window.innerWidth <= 992) {
+        sidebar.classList.add('collapsed');
+    }
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 992) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    });
+</script>
+</body>
+</html>

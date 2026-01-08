@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | Home</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #00b894;   /* Green primary */
+            --primary-dark: #00a884;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --text-light: #999999;
+            --secondary-color: #f1f8f5;
+            --border-color: #e0e0e0;
+            --accent-color: #e8f7f3;
+            --footer-bg: #f9f9f9;
+            --footer-text: #666666;
+            --table-header-bg: #f1f8f5;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00d8a7;
+            --primary-dark: #00b894;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --text-muted: #cccccc;
+            --text-light: #999999;
+            --secondary-color: #2a3d35;
+            --border-color: #444444;
+            --footer-bg: #252525;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+    
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        
+        .sidebar {
+            width: 220px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            transition: width var(--transition-speed);
+            overflow-y: auto;
+            box-shadow: 2px 0 5px var(--shadow-color);
+        }
+
+
+        .sidebar.collapsed:not(:hover) {
+           width: 70px
+        }
+        
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--secondary-color);
+        }
+
+        .sidebar nav {
+            padding-top: 50px;
+        }
+
+        .menu-item {
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-item > a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .menu-item > a:hover {
+            background: var(--secondary-color);
+        }
+
+        .menu-item.active > a {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .menu-item i {
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        .text {
+            transition: opacity var(--transition-speed);
+        }
+
+        
+.sidebar .text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    margin-left: 10px;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+
+.sidebar:hover .text,
+.sidebar:not(.collapsed) .text {
+    opacity: 1;
+    visibility: visible;
+}
+
+        .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed);
+            background: var(--secondary-color);
+        }
+
+        .menu-item:hover .sub-menu,
+        .menu-item.active .sub-menu {
+            max-height: 500px;
+        }
+
+        .sub-menu li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-menu a {
+            display: block;
+            padding: 12px 15px 12px 55px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .sub-menu a:hover {
+            background: rgba(0, 184, 148, 0.1);
+            color: var(--primary-color);
+        }
+
+        .hover-description {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .sidebar.collapsed .menu-item:hover {
+            opacity: 1;
+            visibility: visible;
+        }
+
+       
+        .main-content {
+            flex: 1;
+            margin-left: 220px;
+            transition: margin-left var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.collapsed + .main-content {
+            margin-left: 70px;
+        }
+
+        
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .website-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 4px 4px 0;
+            transition: background-color var(--transition-speed);
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav a {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color var(--transition-speed);
+        }
+
+        .header-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-nav span {
+            color: var(--text-muted);
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-speed);
+            z-index: 1000;
+        }
+
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .order-dropdown-menu {
+            padding: 10px 0;
+        }
+
+        .order-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed);
+        }
+
+        .order-dropdown-menu a:hover {
+            background: var(--secondary-color);
+        }
+
+        .order-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 10px 0;
+        }
+
+        .contact-dropdown-menu {
+            padding: 15px;
+            width: 250px;
+        }
+
+        .contact-dropdown-menu .customer-center {
+            display: block;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-dropdown-menu p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .contact-dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 15px 0;
+        }
+
+        .icon-link {
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+       
+        .theme-toggle {
+            display: inline-block;
+        }
+
+        .theme-switch-checkbox {
+            display: none;
+        }
+
+        .theme-switch-label {
+            display: block;
+            width: 50px;
+            height: 26px;
+            background: var(--text-muted);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-label:hover {
+            background: var(--primary-color);
+        }
+
+        .theme-switch-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-switch-slider {
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition-speed);
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label .theme-switch-slider {
+            transform: translateX(24px);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759849-e41d3f4d90b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .hero-title {
+            margin: 0 0 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin: 0 0 30px;
+            opacity: 0.9;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background var(--transition-speed);
+        }
+
+        .hero-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 60px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .section-center-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        /* Cards Layout */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            padding: 15px;
+        }
+
+        .card-inner {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: transform var(--transition-speed);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+        }
+
+        .card-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .card-text {
+            margin: 0 0 8px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .card-price {
+            margin: 0 0 15px;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-button {
+            margin-top: auto;
+            display: inline-block;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all var(--transition-speed);
+            text-align: center;
+        }
+
+        .card-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Nature Cards */
+        .nature-card {
+            flex: 1 1 500px;
+            padding: 15px;
+        }
+
+        .nature-card-inner {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            background: var(--card-bg);
+        }
+
+        .nature-card-img {
+            width: 35%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .nature-card-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* Humanities Cards */
+        .humanities-card {
+            flex: 1 1 350px;
+            padding: 15px;
+        }
+
+        .humanities-card-inner {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+        }
+
+        .humanities-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .humanities-content {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* View More Button */
+        .view-more {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .view-more-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background var(--transition-speed);
+        }
+
+        .view-more-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Partners Section */
+        .partners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .partner-item {
+            flex: 1 1 150px;
+            text-align: center;
+        }
+
+        .partner-logo {
+            height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter var(--transition-speed);
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Destinations Grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .destination-item {
+            background: var(--bg-color);
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .destination-item:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Service Guarantees */
+        .service-guarantees {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+
+        .service-item {
+            flex: 1 1 300px;
+            padding: 15px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-content {
+            background: var(--bg-color);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            height: 100%;
+        }
+
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            flex: 1 1 180px;
+        }
+
+        .feature-icon {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-color);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .footer-column {
+            flex: 1 1 250px;
+            padding: 15px;
+        }
+
+        .footer-column h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin: 30px 0 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .copyright span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Floating Utility Bar */
+        .floating-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .floating-link {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .floating-link:last-child {
+            border-bottom: none;
+        }
+
+        .floating-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .floating-link i {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+
+        /* Background Colors */
+        .bg-light {
+            background: var(--bg-color);
+        }
+
+        .bg-secondary {
+            background: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .card {
+                flex: 1 1 350px;
+            }
+
+            .nature-card {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .sidebar:not(.collapsed) {
+                transform: translateX(-100%);
+            }
+
+            .sidebar:not(.collapsed) + .main-content {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+            .nature-card-inner {
+                flex-direction: column;
+            }
+
+            .nature-card-img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .floating-bar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .hero-section {
+                padding: 50px 0;
+            }
+
+            .content-section {
+                padding: 40px 0;
+            }
+
+            .section-title, .section-center-title {
+                font-size: 1.5rem;
+            }
+
+            .card, .humanities-card {
+                flex: 1 1 100%;
+            }
+
+            .footer-link {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li class="menu-item" data-menu="hotel">
+                    <a href="#">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="text">Hotel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                        <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                    </ul>
+                    <div class="hover-description">Hotel</div>
+                </li>
+                <li class="menu-item" data-menu="flight">
+                    <a href="#">
+                        <i class="fa-solid fa-plane"></i>
+                        <span class="text">Airfare</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao andTaiwan</a></li>
+                        <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                        <li><a href="flightStatusAirfare.html">Flight status</a></li>
+                        <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                        <li><a href="guideAirfare.html">Airport Guide</a></li>
+                        <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                    </ul>
+                    <div class="hover-description">Airfare</div>
+                </li>
+                <!-- <li class="menu-item" data-menu="train">
+                    <a href="#">
+                        <i class="fa-solid fa-train"></i>
+                        <span class="text">Train tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Domestic train tickets</a></li>
+                        <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                    </ul>
+                    <div class="hover-description">Train tickets</div>
+                </li> -->
+                <li class="menu-item active" data-menu="travels">
+                    <a href="#">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="text">Travel</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                        <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                        <li><a href="3.Private-group.html">Private tour</a></li>
+                        <li><a href="4.Free-walking.html">Independent travel</a></li>
+                        <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                        <li><a href="6.Day-trip.html">Day trip</a></li>
+                        <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                        <li><a href="8.Surrounding.html">Local tours</a></li>
+                        <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                        <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                        <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                        <li><a href="12.Visa.html">Visa</a></li>
+                        <li><a href="13.insures.html">Insurance</a></li>
+                        <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                        <li><a href="15.Destination.html">Destination</a></li>
+                    </ul>
+                    <div class="hover-description">Travel</div>
+                </li>
+                <li class="menu-item" data-menu="tickets">
+                    <a href="#">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span class="text">Tickets & Events</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sub-menu Item X</a></li>
+                        <li><a href="#">Sub-menu Item Y</a></li>
+                    </ul>
+                    <div class="hover-description">Tickets & Events</div>
+                </li>
+                <li class="menu-item" data-menu="Bus&Boat">
+                    <a href="#">
+                        <i class="fa-solid fa-bus"></i>
+                        <span class="text">Bus and boat tickets</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="busTicket.html">Bus ticket</a></li>
+                        <li><a href="boatTicket.html">Boat ticket</a></li>
+                    </ul>
+                    <div class="hover-description">Bus and boat tickets</div>
+                </li>
+                <li class="menu-item" data-menu="Car">
+                    <a href="#">
+                        <i class="fa-solid fa-car"></i>
+                        <span class="text">Car</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                        <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                        <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                        <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                    </ul>
+                    <div class="hover-description">Car</div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+                    <span class="website-name">Kimberley</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything related to travel" id="searchInput">
+                    <button type="button" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <nav class="header-nav">
+                    <a href="#">Log in</a><span>|</span>
+                    <a href="#">Register</a><span>|</span>
+                    <div class="dropdown-container" id="myOrdersDropdown">
+                        <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu order-dropdown-menu">
+                            <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                            <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                            <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                            <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                            <hr>
+                            <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                        </div>
+                    </div>
+                    <span>|</span>
+                    <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                        <a href="#" class="dropdown-toggle">Contact customer service <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu contact-dropdown-menu">
+                            <a href="#" class="customer-center">Visit Customer Center ></a>
+                            <hr>
+                            <p>Domestic: 95010 / 400-830-6666</p>
+                            <p>HK: +852-3008-3295</p>
+                            <p>Macao: +86-21 3406-4888</p>
+                            <p>Taiwan: +86-21 3406-4888</p>
+                            <p>Other regions: +86-21 3406-4888</p>
+                        </div>
+                    </div>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+                    <div class="theme-toggle" id="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <span class="theme-switch-inner"></span>
+                            <span class="theme-switch-slider"></span>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">China National Parks</h1>
+                <p class="hero-subtitle">Explore the breathtaking beauty of China's protected natural landscapes</p>
+                <a href="#destinations" class="hero-button">Discover Now</a>
+            </div>
+        </section>
+
+        <!-- Outdoor Section -->
+        <section id="outdoor" class="content-section">
+            <div class="hero-content">
+                <h2 class="section-title">Outdoor Adventures</h2>
+                <p class="section-description">Professional coach, dedicated play.</p>
+                <div class="cards-container">
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="card-inner">
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Hiking" class="card-img">
+                            <div class="card-body">
+                                <span class="card-tag">Hiking</span>
+                                <h5 class="card-title">Meri Snow Mountain + Rain Crash Village + Shangri-La</h5>
+                                <p class="card-text">Retailer: Impressions of the West</p>
+                                <p class="card-price">From ¥1680</p>
+                                <a href="#" class="card-button">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="card-inner">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Mountaineering" class="card-img">
+                            <div class="card-body">
+                                <span class="card-tag">Mountaineering</span>
+                                <h5 class="card-title">Yunnan Lijiang + Rainfall Village + Shangri-La</h5>
+                                <p class="card-text">Retailer: Traveling with you</p>
+                                <p class="card-price">From ¥2688</p>
+                                <a href="#" class="card-button">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="card-inner">
+                            <img src="https://images.unsplash.com/photo-1579033065374-4d7556799d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Diving" class="card-img">
+                            <div class="card-body">
+                                <span class="card-tag">Diving</span>
+                                <h5 class="card-title">Lijiang + Meri Snow Mountain + Rain Crash Village</h5>
+                                <p class="card-text">Retailer: Impressions of the West</p>
+                                <p class="card-price">From ¥1680</p>
+                                <a href="#" class="card-button">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="card">
+                        <div class="card-inner">
+                            <img src="https://images.unsplash.com/photo-1507038772120-7fff76f79d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Skiing" class="card-img">
+                            <div class="card-body">
+                                <span class="card-tag">Skiing</span>
+                                <h5 class="card-title">Yunnan Lijiang + Shangri-La + Haba Snow</h5>
+                                <p class="card-text">Retailer: Impressions of the West</p>
+                                <p class="card-price">From ¥1780</p>
+                                <a href="#" class="card-button">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="#" class="view-more-button">More Outdoor Adventures <i class="fas fa-heart"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nature Section -->
+        <section id="nature" class="content-section bg-light">
+            <div class="hero-content">
+                <h2 class="section-title">Nature Exploration</h2>
+                <p class="section-description">Zero Distance from Nature. Explore the outdoors.</p>
+                <div class="cards-container">
+                    <!-- Nature Card 1 -->
+                    <div class="nature-card">
+                        <div class="nature-card-inner">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Shangri-La" class="nature-card-img">
+                            <div class="nature-card-content">
+                                <h5 class="card-title">Shangri-La + Meri Snow Mountain + Antarctic Luo + Rain Crash Village</h5>
+                                <p class="card-text">6 days 5 nights private tour · 1 person minimum</p>
+                                <p class="card-text">Retailer: 小满旅行</p>
+                                <p class="card-price">From ¥5750</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Nature Card 2 -->
+                    <div class="nature-card">
+                        <div class="nature-card-inner">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Gannan" class="nature-card-img">
+                            <div class="nature-card-content">
+                                <h5 class="card-title">Gannan + Ganjia Pasture + Zharna · Xiahe Ganjia Ecological Camp</h5>
+                                <p class="card-text">Private tour with luxury camping experience</p>
+                                <p class="card-text">Retailer: 环球定制旅行</p>
+                                <p class="card-price">From ¥5117</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="#" class="view-more-button">More Nature Experiences</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Humanities Section -->
+        <section id="humanities" class="content-section">
+            <div class="hero-content">
+                <h2 class="section-title">Humanities & Culture</h2>
+                <p class="section-description">Find the depth of you and me.</p>
+                <div class="cards-container">
+                    <!-- Humanities Card 1 -->
+                    <div class="humanities-card">
+                        <div class="humanities-card-inner">
+                            <img src="https://images.unsplash.com/photo-1542662565-7e4b66bae529?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Cultural Heritage" class="card-img">
+                            <div class="humanities-content">
+                                <i class="fas fa-landmark humanities-icon"></i>
+                                <h5 class="card-title">Deep Humanities</h5>
+                                <p class="card-text">Immerse yourself in rich cultural traditions and historical sites.</p>
+                                <a href="#" class="card-button">Explore Tours</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Humanities Card 2 -->
+                    <div class="humanities-card">
+                        <div class="humanities-card-inner">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Photography" class="card-img">
+                            <div class="humanities-content">
+                                <i class="fas fa-camera humanities-icon"></i>
+                                <h5 class="card-title">Travel Photography</h5>
+                                <p class="card-text">Capture stunning moments and landscapes with expert guidance.</p>
+                                <a href="#" class="card-button">View Workshops</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Humanities Card 3 -->
+                    <div class="humanities-card">
+                        <div class="humanities-card-inner">
+                            <img src="https://images.unsplash.com/photo-1594736797933-d0e361c3d5c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Zen Parenting" class="card-img">
+                            <div class="humanities-content">
+                                <i class="fas fa-yin-yang humanities-icon"></i>
+                                <h5 class="card-title">Zen-based Parenting</h5>
+                                <p class="card-text">Family journeys that combine travel with mindfulness and connection.</p>
+                                <a href="#" class="card-button">Discover Programs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Cultural Experiences -->
+                <div class="cards-container" style="margin:30px -15px 0;">
+                    <div class="nature-card">
+                        <div class="nature-card-inner">
+                            <img src="https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Religious Culture" class="nature-card-img">
+                            <div class="nature-card-content">
+                                <h5 class="card-title">Religious Culture Tours</h5>
+                                <p class="card-text">Explore ancient temples and spiritual sites with cultural experts.</p>
+                                <p class="card-text">Available in Tibet, Sichuan, and Yunnan</p>
+                                <a href="#" class="card-button" style="display:inline-block;padding:6px 12px;font-size:0.85rem;">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nature-card">
+                        <div class="nature-card-inner">
+                            <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Local Crafts" class="nature-card-img">
+                            <div class="nature-card-content">
+                                <h5 class="card-title">Traditional Craft Workshops</h5>
+                                <p class="card-text">Learn from local artisans and create your own cultural souvenirs.</p>
+                                <p class="card-text">Pottery, weaving, and painting classes</p>
+                                <a href="#" class="card-button" style="display:inline-block;padding:6px 12px;font-size:0.85rem;">View Schedule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="content-section bg-light">
+            <div class="hero-content">
+                <h2 class="section-center-title">Our Trusted Partners</h2>
+                <div class="partners-container">
+                    <div class="partner-item">
+                        <img src="https://via.placeholder.com/100x50?text=PADI" alt="PADI" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://via.placeholder.com/100x50?text=INTREPID" alt="INTREPID" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://via.placeholder.com/100x50?text=X-zone" alt="X-zone" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://via.placeholder.com/100x50?text=JINZHONG" alt="JINZHONG" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://via.placeholder.com/100x50?text=BENGHWARK" alt="BENGHWARK" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="content-section">
+            <div class="hero-content">
+                <h2 class="section-title">Popular Destinations</h2>
+                <div class="destinations-grid">
+                    <div class="destination-item">Hong Kong</div>
+                    <div class="destination-item">Macau</div>
+                    <div class="destination-item">Chengdu</div>
+                    <div class="destination-item">Xiamen</div>
+                    <div class="destination-item">Dalian</div>
+                    <div class="destination-item">Luoyang</div>
+                    <div class="destination-item">Zhangjiajie</div>
+                    <div class="destination-item">Qingdao</div>
+                    <div class="destination-item">Tianjin</div>
+                    <div class="destination-item">Wuhan</div>
+                    <div class="destination-item">Jiuzhaigou</div>
+                    <div class="destination-item">Guilin</div>
+                    <div class="destination-item">Jinan</div>
+                    <div class="destination-item">Mount Tai</div>
+                    <div class="destination-item">Lianyungang</div>
+                    <div class="destination-item">Beijing</div>
+                    <div class="destination-item">Changsha</div>
+                    <div class="destination-item">Guangzhou</div>
+                    <div class="destination-item">Qinhuangdao</div>
+                    <div class="destination-item">Hangzhou</div>
+                    <div class="destination-item">Zhuhai</div>
+                    <div class="destination-item">Kunming</div>
+                    <div class="destination-item">Changbai Mountain</div>
+                    <div class="destination-item">Lijiang</div>
+                    <div class="destination-item">Wuxi</div>
+                    <div class="destination-item">Suzhou</div>
+                    <div class="destination-item">Xishuangbanna</div>
+                    <div class="destination-item">Shanghai</div>
+                    <div class="destination-item">Yangzhou</div>
+                    <div class="destination-item">Xi'an</div>
+                    <div class="destination-item">Shangri-La</div>
+                    <div class="destination-item">Sanya</div>
+                    <div class="destination-item">Ningbo</div>
+                    <div class="destination-item">Huangshan</div>
+                    <div class="destination-item">Nanjing</div>
+                    <div class="destination-item">Lushan</div>
+                    <div class="destination-item">Shenzhen</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Guarantees -->
+        <section class="content-section bg-light">
+            <div class="hero-content">
+                <h2 class="section-center-title">Our Service Guarantees</h2>
+                <div class="service-guarantees">
+                    <div class="service-item">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h5 class="card-title">Reliable Service</h5>
+                            <p class="card-text">Leading service standards with unique guarantee system</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-tag"></i></div>
+                            <h5 class="card-title">Competitive Prices</h5>
+                            <p class="card-text">No hidden fees with the most competitive pricing</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                            <h5 class="card-title">6 Types of Tourism Guarantees</h5>
+                            <p class="card-text">Comprehensive protection for your travel experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <h6 class="card-title"><i class="fas fa-users feature-icon"></i> Team Tour Experience</h6>
+                    </div>
+                    <div class="feature-item">
+                        <h6 class="card-title"><i class="fas fa-exclamation-triangle feature-icon"></i> Tourism Warning</h6>
+                    </div>
+                    <div class="feature-item">
+                        <h6 class="card-title"><i class="fas fa-ambulance feature-icon"></i> Emergency Assistance</h6>
+                    </div>
+                    <div class="feature-item">
+                        <h6 class="card-title"><i class="fas fa-shield-alt feature-icon"></i> Travel Insurance</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link"><i class="fas fa-hotel"></i> Hotel Listings (酒店大全)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-car"></i> Domestic Car Rental (国内租车)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-hot-tub"></i> Hot Spring Travel (温泉旅游)</a>
+                    <a href="#" class="footer-link"><i class="fas fa-umbrella-beach"></i> Island Travel (海岛旅游)</a>
+                    <a href="#" class="footer-link" style="color: var(--primary-color);"><i class="fas fa-ellipsis-h"></i> More >></a>
+                </div>
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h5>Popular Province Travel</h5>
+                        <a href="#">Yunnan</a>
+                        <a href="#">Hainan</a>
+                        <a href="#">Tibet</a>
+                        <a href="#">Sichuan</a>
+                        <a href="#">Taiwan</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Popular City Travel</h5>
+                        <a href="#">Sanya</a>
+                        <a href="#">Chengdu</a>
+                        <a href="#">Kunming</a>
+                        <a href="#">Xi'an</a>
+                        <a href="#">Lhasa</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Popular Theme Travel</h5>
+                        <a href="#">Parent-Child Tour</a>
+                        <a href="#">Honeymoon Tour</a>
+                        <a href="#">Self-Drive Tour</a>
+                        <a href="#">Cruise Tour</a>
+                        <a href="#">Ski Tour</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Help & Support</h5>
+                        <a href="#">How to Book</a>
+                        <a href="#">Payment Methods</a>
+                        <a href="#">Travel Safety</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">About Us</a>
+                    </div>
+                </div>
+                <p class="copyright">© 2025 <span>Kimberley</span> | All Rights Reserved</p>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<!-- Floating Utility Bar -->
+<div class="floating-bar">
+    <a href="#top" class="floating-link">
+        <i><i class="fas fa-chevron-up"></i></i> TOP
+    </a>
+    <a href="javascript:void(0);" title="Scan QR Code" class="floating-link" id="scanQR">
+        <i><i class="fas fa-qrcode"></i></i> Scan QR
+    </a>
+    <a href="javascript:void(0);" title="Customer Service" class="floating-link" id="customerService">
+        <i><i class="fas fa-headset"></i></i> Service
+    </a>
+</div>
+
+<script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+
+    sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+    });
+
+    // Theme Toggle
+    const themeSwitch = document.getElementById('theme-switch');
+    const body = document.body;
+
+    themeSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        themeSwitch.checked = true;
+        body.setAttribute('data-theme', 'dark');
+    }
+
+    // Search functionality
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+
+    function performSearch(query) {
+        if (query.trim()) {
+            alert('Searching for: ' + query);
+            // In a real application, you would redirect to search results or make an API call
+        }
+    }
+
+    searchButton.addEventListener('click', () => performSearch(searchInput.value));
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(searchInput.value);
+    });
+
+    // Card hover effects
+    const cards = document.querySelectorAll('.card-inner, .nature-card-inner, .humanities-card-inner');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Floating bar functionality
+    const scanQR = document.getElementById('scanQR');
+    const customerService = document.getElementById('customerService');
+
+    scanQR.addEventListener('click', function() {
+        alert('Scan QR code feature would open here');
+    });
+
+    customerService.addEventListener('click', function() {
+        alert('Customer service would open here');
+    });
+
+    // Smooth scroll to top
+    document.querySelector('a[href="#top"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Destination items click
+    const destinationItems = document.querySelectorAll('.destination-item');
+    destinationItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const destination = this.textContent;
+            alert(`Searching for tours in ${destination}`);
+        });
+    });
+
+    // Card buttons click
+    const cardButtons = document.querySelectorAll('.card-button');
+    cardButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const cardTitle = this.closest('.card-body')?.querySelector('.card-title')?.textContent ||
+                this.closest('.humanities-content')?.querySelector('.card-title')?.textContent ||
+                this.closest('.nature-card-content')?.querySelector('.card-title')?.textContent;
+            alert(`Booking: ${cardTitle}`);
+        });
+    });
+
+    // Mobile responsiveness for sidebar
+    if (window.innerWidth <= 992) {
+        sidebar.classList.add('collapsed');
+    }
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 992) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    });
+</script>
+</body>
+</html>

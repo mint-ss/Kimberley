@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | MICE Services</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ctrip-blue: #22bcb0;
+            --ctrip-orange: #22bcb0;
+            --ctrip-blue-dark: #0b3c37;
+            --ctrip-blue-low: #22bcaf42;
+            --bodyBg: #ffffff;
+            --headSideBg: #ffffff;
+            --footerBg: #f3f3f3;
+            --text-color: #333;
+            --sidebar-width-collapsed: 60px;
+            --sidebar-width-expanded: 250px;
+            --header-height: 60px;
+            --gold-text: #dab777;
+            --border-color: #5555552f;
+            --cardBg: #fff;
+
+            /* for toggle Light Theme (Default) */
+            --primary-bg: #ffffff;
+            --primary-text: #1a1a1a;
+            --header-bg: #f7f7f7;
+            --toggle-color: #22bcb0;
+            --toggle-off-bg: #e9e9e9;
+            --toggle-on-bg: var(--toggle-color);
+            --shadow-sm: rgba(0, 0, 0, 0.1);
+            --shadow-md: rgba(0, 0, 0, 0.15);
+            --text-gray: #666666;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #888888;
+            --bg-light: #f8f9fa;
+            --border-soft: #eee;
+            --border-light: #e0e0e0;
+            --white-alpha-60: rgba(255, 255, 255, 0.9);
+        }
+
+        .dark-theme {
+            /* Dark Theme */
+            --ctrip-blue: #22bcb0;
+            --ctrip-orange: #22bcb0;
+            --headSideBg: #000000;
+            --bodyBg: #121212;
+            --footerBg: #171717;
+            --sidebar-width-collapsed: 60px;
+            --sidebar-width-expanded: 250px;
+            --header-height: 60px;
+            --gold-text: #EDBC6A;
+            --border-color: #c9c9c97e;
+            --cardBg: #141414;
+
+            /* for toggle Dark Theme */
+            --primary-bg: #1a1a1a;
+            --primary-text: #f0f0f0;
+            --header-bg: #2d2d2d;
+            --toggle-color: #22bcb0;
+            --toggle-off-bg: #ccc;
+            --toggle-on-bg: var(--toggle-color);
+            --shadow-sm: rgba(0, 0, 0, 0.3);
+            --shadow-md: rgba(0, 0, 0, 0.4);
+            --text-gray: #aaaaaa;
+            --text-primary: #f0f0f0;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --bg-light: #2d2d2d;
+            --border-soft: #444;
+            --border-light: #555;
+            --white-alpha-60: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bodyBg);
+            color: var(--primary-text);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: var(--header-height);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--headSideBg);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .website-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--ctrip-blue);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-left: 20px;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 15px;
+            width: 100%;
+            outline: none;
+            background-color: var(--headSideBg);
+            color: var(--primary-text);
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background-color: var(--ctrip-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #1a9a8f;
+        }
+
+        /* Header Nav */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            gap: 5px;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--primary-text);
+            padding: 0 8px;
+            font-size: 14px;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .header-nav span {
+            color: var(--border-color);
+            font-size: 14px;
+        }
+
+        /* Dropdowns */
+        .dropdown-container {
+            position: relative;
+            padding: 0 5px;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 250px;
+            background-color: var(--headSideBg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 8px var(--shadow-sm);
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--footerBg);
+        }
+
+        .dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 5px 0;
+        }
+
+        .contact-dropdown-menu p {
+            padding: 5px 15px;
+            font-size: 13px;
+            color: var(--ctrip-blue);
+        }
+
+        .customer-center {
+            display: block;
+            background-color: var(--ctrip-blue);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 0 15px 10px;
+            text-decoration: none;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: inline-block;
+            position: relative;
+        }
+
+        .theme-switch-checkbox {
+            display: none;
+        }
+
+        .theme-switch-label {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--toggle-off-bg);
+            border-radius: 20px;
+            height: 27px;
+            width: 60px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .theme-switch-slider {
+            display: block;
+            width: 27px;
+            height: 27px;
+            background: #fff;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            bottom: 0;
+            right: 33px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.112);
+            transition: all 0.3s;
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label {
+            background-color: var(--toggle-on-bg);
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label .theme-switch-slider {
+            right: 0px;
+        }
+
+        .theme-switch-checkbox:checked + .theme-switch-label::before {
+            content: '☀️';
+            position: absolute;
+            left: 8px;
+            top: 3px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .theme-switch-label::after {
+            content: '🌙';
+            position: absolute;
+            right: 8px;
+            top: 2px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: var(--sidebar-width-collapsed);
+            background-color: var(--headSideBg);
+            border-right: 1px solid var(--border-color);
+            transition: width 0.3s ease;
+            overflow-x: hidden;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            height: calc(100vh - var(--header-height));
+            z-index: 900;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-left: 3px;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            color: var(--primary-text);
+        }
+
+        .sidebar-toggle:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .sidebar:hover,
+        .sidebar.expanded {
+            width: var(--sidebar-width-expanded);
+        }
+
+        .sidebar.collapsed:not(:hover) {
+            width: var(--sidebar-width-collapsed);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li.menu-item {
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar li.menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 15px 10px;
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: background-color 0.2s, color 0.2s;
+            gap: 5px;
+        }
+
+        .sidebar li.menu-item ul a:hover {
+            background-color: var(--bodyBg);
+            color: var(--ctrip-blue);
+        }
+
+        .sidebar li.menu-item.active {
+            border-left-color: var(--ctrip-blue);
+            background-color: var(--ctrip-blue-low);
+        }
+
+        .sidebar i {
+            font-size: 20px;
+            width: 40px;
+            text-align: center;
+            margin-left: 6px;
+            margin: 3px;
+        }
+
+        .sidebar .text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+
+        .sidebar:hover .text,
+        .sidebar.expanded .text {
+            opacity: 1;
+        }
+
+        /* Sub-menu */
+        .sub-menu {
+            display: none;
+            background-color: var(--footerBg);
+            padding-left: 15px;
+        }
+
+        .sidebar.expanded li.menu-item.active .sub-menu,
+        .sidebar:hover li.menu-item.active .sub-menu {
+            display: block;
+        }
+
+        .sub-menu li a {
+            padding: 8px;
+            font-size: 14px;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .sub-menu li a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        /* Hover description */
+        .hover-description {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: var(--sidebar-width-collapsed);
+            transform: translateY(-50%);
+            background-color: var(--ctrip-blue);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .sidebar.collapsed li.menu-item:hover {
+            display: block;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: var(--sidebar-width-collapsed);
+            transition: margin-left 0.3s ease;
+            color: var(--primary-text);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .sidebar:hover ~ .main-content,
+        .sidebar.expanded ~ .main-content {
+            margin-left: var(--sidebar-width-expanded);
+        }
+
+        /* Navigation */
+        .secondary-nav {
+            background: var(--bg-light);
+            box-shadow: 0 2px 4px var(--shadow-sm);
+            padding: 0.5rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--ctrip-blue);
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+
+        .nav-brand i {
+            margin-right: 5px;
+        }
+
+        .mobile-toggle {
+            border: none;
+            background: none;
+            display: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 1.5em;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+        }
+
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-select {
+            padding: 0.375rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background: var(--cardBg);
+            color: var(--text-primary);
+        }
+
+        .btn-login {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--ctrip-blue);
+            color: var(--ctrip-blue);
+            background: var(--cardBg);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-login:hover {
+            background: var(--ctrip-blue);
+            color: var(--cardBg);
+        }
+
+        .btn-register {
+            padding: 0.375rem 0.75rem;
+            background: var(--ctrip-blue);
+            color: var(--cardBg);
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-register:hover {
+            background: #1a9a8f;
+        }
+
+        /* Hero Section */
+        .mice-hero {
+            background: linear-gradient(var(--white-alpha-60), var(--white-alpha-60)),
+            url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--cardBg);
+            padding: 80px 0;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1 1 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem;
+            color: var(--cardBg);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            margin: 0 0 1.5rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-item i {
+            color: #ffc107;
+        }
+
+        .hero-form {
+            flex: 1 1 350px;
+        }
+
+        .form-card {
+            background: var(--cardBg);
+            color: var(--text-primary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px var(--shadow-md);
+        }
+
+        .form-card h4 {
+            text-align: center;
+            margin: 0 0 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group select,
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--cardBg);
+        }
+
+        .phone-input {
+            display: flex;
+        }
+
+        .country-code {
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 0.375rem 0 0 0.375rem;
+            color: var(--text-primary);
+        }
+
+        .phone-input input {
+            flex: 1;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-check input {
+            margin-right: 0.5rem;
+        }
+
+        .form-check label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            margin: 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--ctrip-blue);
+            color: var(--cardBg);
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #1a9a8f;
+        }
+
+        .form-note {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-align: center;
+            margin: 0.5rem 0 0;
+        }
+
+        /* Common Section Styles */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--ctrip-blue);
+            font-size: 1.8rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin: 0 0 2rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 3rem 0;
+        }
+
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: -0.75rem;
+        }
+
+        .service-card {
+            flex: 1 1 calc(33.333% - 1.5rem);
+            min-width: 250px;
+            background: var(--cardBg);
+            border: none;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-md);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--ctrip-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h5 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Enterprise Activities */
+        .enterprise-activities {
+            padding: 3rem 0;
+            background: var(--bg-light);
+        }
+
+        .activities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: -0.75rem;
+        }
+
+        .activity-item {
+            flex: 1 1 calc(25% - 1.5rem);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .activity-item > div {
+            background: var(--cardBg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-sm);
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .activity-item > div:hover {
+            transform: translateY(-3px);
+        }
+
+        .activity-item i {
+            font-size: 2rem;
+            color: var(--ctrip-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-item h5 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Core Benefits */
+        .core-benefits {
+            padding: 3rem 0;
+        }
+
+        .benefits-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .benefit-item {
+            flex: 1 1 calc(25% - 1.5rem);
+            min-width: 250px;
+        }
+
+        .benefit-content {
+            border-left: 4px solid var(--ctrip-blue);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            height: 100%;
+        }
+
+        .benefit-content h4 {
+            margin: 0 0 0.75rem;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-content ul {
+            margin: 0;
+            padding-left: 1.25rem;
+            color: var(--text-gray);
+        }
+
+        .benefit-content li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Clients Section */
+        .clients-section {
+            padding: 3rem 0;
+            background: var(--bg-light);
+        }
+
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .client-logo {
+            height: 60px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+            opacity: 0.7;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            padding: 3rem 0;
+        }
+
+        .cases-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .case-card {
+            flex: 1 1 calc(25% - 1.5rem);
+            min-width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow-sm);
+            transition: transform 0.3s;
+            background: var(--cardBg);
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .case-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .case-content {
+            padding: 1rem;
+        }
+
+        .case-content h5 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .case-content p {
+            margin: 0 0 0.25rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--ctrip-blue);
+            color: var(--cardBg);
+            padding: 3.5rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin: 0 0 1.5rem;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            padding: 0.75rem 2rem;
+            background: var(--cardBg);
+            color: var(--ctrip-blue);
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1.125rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-cta-primary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .btn-cta-secondary {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: var(--cardBg);
+            border: 2px solid var(--cardBg);
+            border-radius: 0.375rem;
+            font-size: 1.125rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Travel Portal Footer */
+        .travel-footer {
+            background: var(--bg-light);
+            padding: 2.5rem 0 1.25rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            display: inline-block;
+            margin: 0 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .more-link {
+            color: var(--ctrip-blue) !important;
+        }
+
+        .footer-sections {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .footer-col {
+            flex: 1 1 200px;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1rem;
+            margin: 0 0 0.75rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .copyright {
+            margin: 1rem 0 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Floating Bar */
+        .floating-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: var(--cardBg);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 12px var(--shadow-sm);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .floating-btn {
+            display: block;
+            padding: 0.75rem;
+            text-align: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            border-bottom: 1px solid var(--border-soft);
+            transition: all 0.2s;
+        }
+
+        .floating-btn:last-child {
+            border-bottom: none;
+        }
+
+        .floating-btn:hover {
+            background: var(--ctrip-blue-low);
+            color: var(--ctrip-blue);
+        }
+
+        .floating-btn i {
+            display: block;
+            font-size: 1.125rem;
+            margin-bottom: 0.1875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .service-card,
+            .benefit-item {
+                flex: 1 1 calc(50% - 1.5rem);
+            }
+
+            .activity-item,
+            .case-card {
+                flex: 1 1 calc(33.333% - 1.5rem);
+            }
+
+            .footer-col {
+                flex: 1 1 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.collapsed {
+                width: var(--sidebar-width-expanded);
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                height: auto;
+                padding: 10px;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .nav-actions {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .service-card,
+            .activity-item,
+            .benefit-item,
+            .case-card {
+                flex: 1 1 100%;
+            }
+
+            .hero-grid {
+                flex-direction: column;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-col {
+                flex: 1 1 100%;
+            }
+
+            .floating-bar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Header -->
+<header class="main-header">
+    <div class="header-content">
+        <div class="logo-section">
+            <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+            <span class="website-name">Kimberley</span>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for anything related to travel">
+            <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <nav class="header-nav">
+            <a href="#">Log in</a><span>|</span>
+            <a href="#">Register</a><span>|</span>
+
+            <div class="dropdown-container" id="myOrdersDropdown">
+                <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                <div class="dropdown-menu order-dropdown-menu">
+                    <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                    <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                    <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                    <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                    <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                    <hr>
+                    <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                </div>
+            </div>
+
+            <span>|</span>
+
+            <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                <a href="#" class="dropdown-toggle">Contact customer service <i class="fa-solid fa-caret-down"></i></a>
+                <div class="dropdown-menu contact-dropdown-menu">
+                    <a href="#" class="customer-center">Visit Customer Center ></a>
+                    <hr>
+                    <p>Domestic: 95010 / 400-830-6666</p>
+                    <p>HK: +852-3008-3295</p>
+                    <p>Macao: +86-21 3406-4888</p>
+                    <p>Taiwan: +86-21 3406-4888</p>
+                    <p>Other regions: +86-21 3406-4888</p>
+                </div>
+            </div>
+
+            <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+            <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+
+            <div class="theme-toggle" id="theme-toggle">
+                <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                <label for="theme-switch" class="theme-switch-label">
+                    <span class="theme-switch-slider"></span>
+                </label>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<aside class="sidebar collapsed" id="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav>
+        <ul>
+            <li class="menu-item" data-menu="hotel">
+                <a href="#">
+                    <i class="fa-solid fa-hotel"></i>
+                    <span class="text">Hotel</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                    <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                </ul>
+                <div class="hover-description">Hotel</div>
+            </li>
+
+            <li class="menu-item" data-menu="flight">
+                <a href="#">
+                    <i class="fa-solid fa-plane"></i>
+                    <span class="text">Airfare</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao andTaiwan</a></li>
+                    <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                    <li><a href="flightStatusAirfare.html">Flight status</a></li>
+                    <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                    <li><a href="guideAirfare.html">Airport Guide</a></li>
+                    <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                </ul>
+                <div class="hover-description">Airfare</div>
+            </li>
+
+            <!-- <li class="menu-item" data-menu="train">
+                <a href="#">
+                    <i class="fa-solid fa-train"></i>
+                    <span class="text">Train tickets</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="#">Domestic train tickets</a></li>
+                    <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                </ul>
+                <div class="hover-description">Train tickets</div>
+            </li> -->
+
+            <li class="menu-item active" data-menu="travels">
+                <a href="#">
+                    <i class="fa-solid fa-flag"></i>
+                    <span class="text">Travel</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                    <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                    <li><a href="3.Private-group.html">Private tour</a></li>
+                    <li><a href="4.Free-walking.html">Independent travel</a></li>
+                    <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                    <li><a href="6.Day-trip.html">Day trip</a></li>
+                    <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                    <li><a href="8.Surrounding.html">Local tours</a></li>
+                    <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                    <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                    <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                    <li><a href="12.Visa.html">Visa</a></li>
+                    <li><a href="13.insures.html">Insurance</a></li>
+                    <li><a href="14.Bussiness-club-award.html">Corporate MICE</a></li>
+                    <li><a href="15.Destination.html">Destination</a></li>
+                </ul>
+                <div class="hover-description">Travel</div>
+            </li>
+
+            <li class="menu-item" data-menu="tickets">
+                <a href="#">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span class="text">Tickets & Events</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="#">Sub-menu Item X</a></li>
+                    <li><a href="#">Sub-menu Item Y</a></li>
+                </ul>
+                <div class="hover-description">Tickets & Events</div>
+            </li>
+
+            <li class="menu-item" data-menu="Bus&Boat">
+                <a href="#">
+                    <i class="fa-solid fa-bus"></i>
+                    <span class="text">Bus and boat tickets</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="busTicket.html">Bus ticket</a></li>
+                    <li><a href="boatTicket.html">Boat ticket</a></li>
+                </ul>
+                <div class="hover-description">Bus and boat tickets</div>
+            </li>
+
+            <li class="menu-item" data-menu="Car">
+                <a href="#">
+                    <i class="fa-solid fa-car"></i>
+                    <span class="text">Car</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                    <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                    <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                    <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                </ul>
+                <div class="hover-description">Car</div>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Navigation -->
+    <nav class="secondary-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <i class="fas fa-plane"></i> Kimberley Business Travel
+            </a>
+            <button class="mobile-toggle" type="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Think Tank</a></li>
+                    <li><a href="#">Travel Case</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Simplified Chinese</option>
+                    </select>
+                    <button class="btn-login">Log in</button>
+                    <button class="btn-register">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="mice-hero">
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Kimberley Travel MICE Services</h1>
+                    <p>
+                        Kimberley MICE provides self-service one-stop service platform, professional event team to provide one-to-one customized event content, integrate Kimberley business travel resources advantages, provide conference services, reward tourism, event exhibitions and other customized MICE services.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100+ Destination Partners</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Global 2000+ Clients</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-form">
+                    <div class="form-card">
+                        <h4>Request Consultation</h4>
+                        <form>
+                            <div class="form-group">
+                                <label>Type of consultation *</label>
+                                <select>
+                                    <option>Exhibition tourism</option>
+                                    <option>Conference services</option>
+                                    <option>Incentive travel</option>
+                                    <option>Team building</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Company Name *</label>
+                                <input type="text" placeholder="Please enter at least 4 words">
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile phone number *</label>
+                                <div class="phone-input">
+                                    <span class="country-code">+86</span>
+                                    <input type="tel" placeholder="Please enter your mobile number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mailbox</label>
+                                <input type="email" placeholder="Enter your email">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="agreeCheck">
+                                <label for="agreeCheck">I have read and agree to the information authorization commitment.</label>
+                            </div>
+                            <button type="submit" class="btn-submit">Advisory appointment</button>
+                        </form>
+                        <p class="form-note">Professional consultants will call feedback within 2 business days, please be patient.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="section-container">
+            <h2 class="section-title">Multi-scenario Coverage One-stop service</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <h5>The Ticket Solution</h5>
+                    <p>Airline Ticketing</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-users"></i></div>
+                    <h5>Team expansion</h5>
+                    <p>Team Building</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-crown"></i></div>
+                    <h5>VIP services</h5>
+                    <p>VIP Service</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-hotel"></i></div>
+                    <h5>Accommodations are scheduled</h5>
+                    <p>Hotels & Venue Reservations</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h5>Exhibition tour</h5>
+                    <p>Exhibition and Roadshows</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-laptop"></i></div>
+                    <h5>Digital Conference</h5>
+                    <p>Online meeting solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Enterprise Activities -->
+    <section class="enterprise-activities">
+        <div class="section-container">
+            <h2 class="section-title">Global Enterprise Activities Program</h2>
+            <div class="activities-grid">
+                <div class="activity-item">
+                    <i class="fas fa-handshake"></i>
+                    <h5>Business meetings</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h5>Industry Summit</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-comments"></i>
+                    <h5>Sales Forum</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-images"></i>
+                    <h5>Exhibition</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h5>Welfare tourism</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-award"></i>
+                    <h5>Incentives for travel</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-user-friends"></i>
+                    <h5>Employee team building</h5>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h5>Company Annual Meeting</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Benefits -->
+    <section class="core-benefits">
+        <div class="section-container">
+            <h2 class="section-title">Kimberley Business Travel MICE Service Core Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-content">
+                        <h4>Advantages of resources</h4>
+                        <ul>
+                            <li>100 Destination Management Company Partnerships</li>
+                            <li>50+ National Association Award Offices Partnership</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-content">
+                        <h4>Brand Advantage</h4>
+                        <ul>
+                            <li>Kimberley Brand Advantage Resources</li>
+                            <li>Global 2000+ Partners</li>
+                            <li>ESG Sustainability</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-content">
+                        <h4>Compliance advantage</h4>
+                        <ul>
+                            <li>Bidding, clear price</li>
+                            <li>Helping companies to reduce efficiency</li>
+                            <li>International authority information security</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-content">
+                        <h4>Advantages of Service</h4>
+                        <ul>
+                            <li>One-to-one communication, customized programs</li>
+                            <li>One-stop service, professional team</li>
+                            <li>Travel security</li>
+                            <li>24-hour emergency assistance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="clients-section">
+        <div class="section-container">
+            <h2 class="section-title">Trusted by 100+ of the world's top 500 companies</h2>
+            <p class="section-subtitle">Customer service experience across the field to meet different activity needs</p>
+            <div class="clients-grid">
+                <img src="https://via.placeholder.com/120x60?text=ASML" alt="ASML" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=EurKert" alt="EurKert" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=FUJITEC" alt="FUJITEC" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=GILEAD" alt="GILEAD" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=Boehringer" alt="Boehringer Ingelheim" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=MulRata" alt="mulRata" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=Parexel" alt="Porexel Biotech" class="client-logo">
+                <img src="https://via.placeholder.com/120x60?text=HITACHI" alt="HITACHI" class="client-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="section-container">
+            <h2 class="section-title">Conference Services Case Studies</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Envision.2024 Conference">
+                    <div class="case-content">
+                        <h5>Envision.2024</h5>
+                        <p>Type: Conference & Meeting</p>
+                        <p>Venue: Shanghai</p>
+                        <p>Scale: 1500 people</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Kimberley Global Partners Conference">
+                    <div class="case-content">
+                        <h5>Kimberley Global Partners Conference</h5>
+                        <p>Type: Conference & Meeting</p>
+                        <p>Venue: Nanchang</p>
+                        <p>Scale: 1500 people</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Taicang New Energy Celebration">
+                    <div class="case-content">
+                        <h5>Taicang New Energy Celebration</h5>
+                        <p>Type: Opening Ceremony</p>
+                        <p>Venue: Taicang</p>
+                        <p>Scale: 300 people</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80" alt="International Tourism City Mayors Forum">
+                    <div class="case-content">
+                        <h5>International Tourism City Mayors Forum</h5>
+                        <p>Type: Conference & Meeting</p>
+                        <p>Venue: Zhengzhou</p>
+                        <p>Scale: 400 people</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Start a one-stop meeting tour with Kimberley MICE</h2>
+            <div class="cta-buttons">
+                <button class="btn-cta-primary">Free trial</button>
+                <button class="btn-cta-secondary">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Portal Footer -->
+    <footer class="travel-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-hotel"></i> Hotel Listings (酒店大全)</a>
+                <a href="#"><i class="fas fa-car"></i> Domestic Car Rental (国内租车)</a>
+                <a href="#"><i class="fas fa-hot-tub"></i> Hot Spring Travel (温泉旅游)</a>
+                <a href="#"><i class="fas fa-umbrella-beach"></i> Island Travel (海岛旅游)</a>
+                <a href="#" class="more-link"><i class="fas fa-ellipsis-h"></i> More >></a>
+            </div>
+            <div class="footer-sections">
+                <div class="footer-col">
+                    <h5>Popular Province Travel</h5>
+                    <a href="#">Yunnan</a>
+                    <a href="#">Hainan</a>
+                    <a href="#">Tibet</a>
+                    <a href="#">Sichuan</a>
+                    <a href="#">Taiwan</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Popular City Travel</h5>
+                    <a href="#">Sanya</a>
+                    <a href="#">Chengdu</a>
+                    <a href="#">Kunming</a>
+                    <a href="#">Xi'an</a>
+                    <a href="#">Lhasa</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Popular Theme Travel</h5>
+                    <a href="#">Parent-Child Tour</a>
+                    <a href="#">Honeymoon Tour</a>
+                    <a href="#">Self-Drive Tour</a>
+                    <a href="#">Cruise Tour</a>
+                    <a href="#">Ski Tour</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Help & Support</h5>
+                    <a href="#">How to Book</a>
+                    <a href="#">Payment Methods</a>
+                    <a href="#">Travel Safety</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Kimberley | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Floating Utility Bar -->
+    <div class="floating-bar">
+        <a href="#top" class="floating-btn">
+            <i class="fas fa-chevron-up"></i> TOP
+        </a>
+        <a href="javascript:void(0);" title="Scan QR Code" class="floating-btn">
+            <i class="fas fa-qrcode"></i> Scan QR
+        </a>
+        <a href="javascript:void(0);" title="Customer Service" class="floating-btn">
+            <i class="fas fa-headset"></i> Service
+        </a>
+    </div>
+</main>
+
+<script>
+    // Theme Toggle Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleDiv = document.getElementById('theme-toggle');
+        const themeSwitchCheckbox = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Load theme from localStorage
+        function loadTheme() {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeSwitchCheckbox.checked = true;
+            } else {
+                body.classList.remove('dark-theme');
+                themeSwitchCheckbox.checked = false;
+            }
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            body.classList.toggle('dark-theme');
+
+            if (body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Event listener for theme switch
+        themeSwitchCheckbox.addEventListener('change', toggleTheme);
+        loadTheme();
+
+        // Dropdown functionality
+        function setupDropdown(containerId) {
+            const container = document.getElementById(containerId);
+            const toggle = container.querySelector('.dropdown-toggle');
+            const menu = container.querySelector('.dropdown-menu');
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!container.contains(e.target)) {
+                    menu.style.display = 'none';
+                }
+            });
+
+            container.addEventListener('mouseenter', () => {
+                menu.style.display = 'block';
+            });
+
+            container.addEventListener('mouseleave', () => {
+                menu.style.display = 'none';
+            });
+        }
+
+        // Setup dropdowns
+        setupDropdown('myOrdersDropdown');
+        setupDropdown('contactCustomerServiceDropdown');
+
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const menuItems = document.querySelectorAll('.sidebar .menu-item');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded');
+            sidebar.classList.toggle('collapsed');
+        });
+
+        // Menu item click functionality
+        menuItems.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                if (item.querySelector('.sub-menu')) {
+                    // e.preventDefault();
+                    menuItems.forEach((i) => i.classList.remove('active'));
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Searching for: ${query}`);
+                // Add your search logic here
+            }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+
+        // Mobile navigation toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', function() {
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Form submission
+        const form = document.querySelector('.hero-form form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your consultation request! We will contact you within 2 business days.');
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberley Travel & Tour | Travel</title>
+    <link rel="icon" type="image/png" href="img/kimberley.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ctrip-blue: #22bcb0;
+            --ctrip-orange: #22bcb0;
+            --ctrip-blue-dark: #0b3c37;
+            --ctrip-blue-low: #22bcaf42;
+            --bodyBg: #ffffff;
+            --headSideBg: #ffffff;
+            --footerBg: #f3f3f3;
+            --text-color: #333;
+            --sidebar-width-collapsed: 60px;
+            --sidebar-width-expanded: 250px;
+            --header-height: 60px;
+            --gold-text: #dab777;
+            --border-color: #5555552f;
+            --cardBg: #fff;
+
+            /* for toggle Light Theme (Default) */
+            --primary-bg: #ffffff;
+            --primary-text: #1a1a1a;
+            --header-bg: #f7f7f7;
+            --toggle-color: #22bcb0;
+            --toggle-off-bg: #e9e9e9;
+            --toggle-on-bg: var(--toggle-color);
+        }
+
+        .dark-theme {
+            /* Dark Theme */
+            --ctrip-blue: #22bcb0;
+            --ctrip-orange: #22bcb0;
+            --headSideBg: #000000;
+            --bodyBg: #121212;
+            --footerBg: #171717;
+            --sidebar-width-collapsed: 60px;
+            --sidebar-width-expanded: 250px;
+            --header-height: 60px;
+            --gold-text: #EDBC6A;
+            --border-color: #c9c9c97e;
+            --cardBg: #141414;
+
+            /* for toggle Dark Theme */
+            --primary-bg: #1a1a1a;
+            --primary-text: #f0f0f0;
+            --header-bg: #2d2d2d;
+            --toggle-color: #22bcb0;
+            --toggle-off-bg: #ccc;
+            --toggle-on-bg: var(--toggle-color);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bodyBg);
+            color: var(--gold-text);
+            min-height: 100vh;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding-top: var(--header-height);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--headSideBg);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+            height: 100%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .website-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--ctrip-blue);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-left: 10px;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 12px;
+            width: 100%;
+            outline: none;
+            background-color: var(--headSideBg);
+            color: var(--primary-text);
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background-color: var(--ctrip-blue);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #1a9a8f;
+        }
+
+        /* Header Nav */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            gap: 5px;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--primary-text);
+            padding: 0 6px;
+            font-size: 13px;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .header-nav span {
+            color: var(--border-color);
+            font-size: 13px;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--primary-text);
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Dropdowns */
+        .dropdown-container {
+            position: relative;
+            padding: 0 5px;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 250px;
+            background-color: var(--headSideBg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--footerBg);
+        }
+
+        .dropdown-menu hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 5px 0;
+        }
+
+        .contact-dropdown-menu p {
+            padding: 5px 15px;
+            font-size: 13px;
+            color: var(--ctrip-blue);
+        }
+
+        .customer-center {
+            display: block;
+            background-color: var(--ctrip-blue);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 0 15px 10px;
+            text-decoration: none;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: inline-block;
+            position: relative;
+        }
+
+        .theme-switch-checkbox {
+            display: none;
+        }
+
+        .theme-switch-label {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--toggle-off-bg);
+            border-radius: 20px;
+            height: 27px;
+            width: 60px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .theme-switch-slider {
+            display: block;
+            width: 27px;
+            height: 27px;
+            background: #fff;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            bottom: 0;
+            right: 33px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.112);
+            transition: all 0.3s;
+        }
+
+        .theme-switch-checkbox:checked+.theme-switch-label {
+            background-color: var(--toggle-on-bg);
+        }
+
+        .theme-switch-checkbox:checked+.theme-switch-label .theme-switch-slider {
+            right: 0px;
+        }
+
+        .theme-switch-checkbox:checked+.theme-switch-label::before {
+            content: '☀️';
+            position: absolute;
+            left: 8px;
+            top: 3px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .theme-switch-label::after {
+            content: '🌙';
+            position: absolute;
+            right: 8px;
+            top: 2px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            display: flex;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: var(--sidebar-width-collapsed);
+            background-color: var(--headSideBg);
+            border-right: 1px solid var(--border-color);
+            transition: width 0.3s ease;
+            overflow-x: hidden;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            height: calc(100vh - var(--header-height));
+            z-index: 900;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-left: 3px;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            color: var(--primary-text);
+        }
+
+        .sidebar-toggle:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .sidebar:hover,
+        .sidebar.expanded {
+            width: var(--sidebar-width-expanded);
+        }
+
+        .sidebar.collapsed:not(:hover) {
+            width: var(--sidebar-width-collapsed);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li.menu-item {
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar li.menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 15px 10px;
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: background-color 0.2s, color 0.2s;
+            gap: 5px;
+        }
+
+        .sidebar li.menu-item ul a:hover {
+            background-color: var(--bodyBg);
+            color: var(--ctrip-blue);
+        }
+
+        .sidebar li.menu-item.active {
+            border-left-color: var(--ctrip-blue);
+            background-color: var(--ctrip-blue-low);
+        }
+
+        .sidebar i {
+            font-size: 20px;
+            width: 40px;
+            text-align: center;
+            margin-left: 6px;
+            margin: 3px;
+        }
+
+        .sidebar .text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+
+        .sidebar:hover .text,
+        .sidebar.expanded .text {
+            opacity: 1;
+        }
+
+        /* Sub-menu */
+        .sub-menu {
+            display: none;
+            background-color: var(--footerBg);
+            padding-left: 15px;
+        }
+
+        .sidebar.expanded li.menu-item.active .sub-menu,
+        .sidebar:hover li.menu-item.active .sub-menu {
+            display: block;
+            color: #333;
+        }
+
+        .sub-menu li a {
+            padding: 8px;
+            font-size: 14px;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .sub-menu li a:hover {
+            color: var(--ctrip-blue);
+        }
+
+        /* Hover description */
+        .hover-description {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: var(--sidebar-width-collapsed);
+            transform: translateY(-50%);
+            background-color: var(--ctrip-blue);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            white-space: nowrap;
+            pointer-events: none;
+            /* z-index: 1000; */
+        }
+
+        .sidebar.collapsed li.menu-item:hover  {
+            display: block;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: var(--sidebar-width-collapsed);
+            flex-grow: 1;
+            transition: margin-left 0.3s ease;
+            padding: 15px;
+            color: var(--primary-text);
+            min-height: calc(100vh - var(--header-height));
+            width: calc(100% - var(--sidebar-width-collapsed));
+        }
+
+        .sidebar:hover~.main-content,
+        .sidebar.expanded~.main-content {
+            margin-left: var(--sidebar-width-expanded);
+            width: calc(100% - var(--sidebar-width-expanded));
+        }
+
+        /* Travel Page Specific Styles */
+        .travel-header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--ctrip-blue);
+            padding: 15px;
+            background: var(--headSideBg);
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .city-selector {
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .city-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--headSideBg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 100;
+        }
+
+        .city-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--primary-text);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .city-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .city-dropdown a:hover {
+            background-color: var(--footerBg);
+        }
+
+        .travel-search {
+            margin-left: auto;
+            position: relative;
+            max-width: 300px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .travel-search input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 14px;
+            outline: none;
+            background: var(--headSideBg);
+            color: var(--primary-text);
+        }
+
+        .travel-search button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--ctrip-blue);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .travel-layout {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .destination-sidebar {
+            width: 100%;
+            background: var(--headSideBg);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .destination-sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .destination-sidebar li {
+            flex: 1 0 100%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .destination-sidebar .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: var(--primary-text);
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .destination-sidebar .menu-item:hover {
+            background-color: var(--ctrip-blue);
+            color: white;
+        }
+
+        .mega-menu {
+            display: none;
+            position: static;
+            width: 100%;
+            background: var(--headSideBg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 15px;
+            border-left: none;
+            border-top: 3px solid var(--ctrip-blue);
+            border-radius: 0;
+        }
+
+        .mega-menu.show {
+            display: block;
+        }
+
+        .travel-content {
+            width: 100%;
+            padding: 0;
+            flex: 1;
+        }
+
+        .banner-section {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            max-height: 300px;
+        }
+
+        .banner-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .offer-card {
+            background: var(--cardBg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.3s;
+            color: var(--primary-text);
+            margin-bottom: 15px;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .offer-card h5 {
+            color: var(--ctrip-blue);
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        .tab-button {
+            color: #666666;
+            border: none;
+            font-weight: 600;
+            padding: 10px 15px;
+            background: transparent;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .tab-button.active {
+            color: var(--ctrip-blue);
+            border-bottom: 2px solid var(--ctrip-blue);
+        }
+
+        .tab-button:hover:not(.active) {
+            color: var(--ctrip-blue);
+        }
+
+        .product-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--cardBg);
+            margin-bottom: 20px;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff3b30;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ctrip-blue);
+        }
+
+        .original-price {
+            color: #666666;
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        .btn-book {
+            background: var(--ctrip-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-book:hover {
+            background: #1a9a8f;
+            transform: scale(1.05);
+        }
+
+        .testimonial-card {
+            background: var(--cardBg);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--ctrip-blue);
+            color: var(--primary-text);
+            margin-bottom: 15px;
+        }
+
+        .more-products-btn {
+            border: 1px solid var(--ctrip-blue);
+            color: var(--ctrip-blue);
+            background: transparent;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .more-products-btn:hover {
+            background: var(--ctrip-blue);
+            color: white;
+        }
+
+        .footer-link {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--ctrip-blue);
+        }
+
+        .floating-bar {
+            position: fixed;
+            right: 10px;
+            bottom: 20px;
+            z-index: 999;
+            background: var(--headSideBg);
+            border: 1px solid var(--ctrip-blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .floating-bar a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            color: var(--primary-text);
+            text-decoration: none;
+            font-size: 11px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .floating-bar a i {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .floating-bar a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: var(--headSideBg);
+            z-index: 10000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-text);
+            cursor: pointer;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-nav-menu li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--primary-text);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .mobile-nav-menu a:hover {
+            background: var(--ctrip-blue-low);
+            color: var(--ctrip-blue);
+        }
+
+        /* Responsive Design */
+        /* Tablet */
+        @media (min-width: 768px) {
+            .header-content {
+                padding: 0 20px;
+            }
+
+            .website-name {
+                font-size: 20px;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .search-bar {
+                margin-left: 20px;
+            }
+
+            .header-nav a {
+                padding: 0 8px;
+                font-size: 14px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .travel-header {
+                padding: 15px 20px;
+            }
+
+            .city-selector {
+                font-size: 1.25rem;
+            }
+
+            .destination-sidebar {
+                width: 30%;
+                border-right: 1px solid var(--border-color);
+                border-bottom: none;
+                display: block;
+                margin-bottom: 0;
+            }
+
+            .destination-sidebar ul {
+                display: block;
+            }
+
+            .destination-sidebar li {
+                flex: none;
+            }
+
+            .mega-menu {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                width: 500px;
+                box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+                border-left: 5px solid var(--ctrip-blue);
+                border-top: none;
+            }
+
+            .travel-content {
+                width: 70%;
+                padding: 0 0 0 1.5rem;
+            }
+
+            .offer-card {
+                margin-bottom: 0;
+            }
+
+            .product-card {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .header-content {
+                max-width: 1200px;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width-collapsed);
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-width-collapsed);
+                width: calc(100% - var(--sidebar-width-collapsed));
+            }
+
+            .sidebar:hover~.main-content,
+            .sidebar.expanded~.main-content {
+                margin-left: var(--sidebar-width-expanded);
+                width: calc(100% - var(--sidebar-width-expanded));
+            }
+
+            .destination-sidebar {
+                width: 25%;
+            }
+
+            .travel-content {
+                width: 75%;
+            }
+
+            .mega-menu {
+                width: 850px;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            .header-nav a:not(.icon-link) {
+                display: none;
+            }
+
+            .header-nav span {
+                display: none;
+            }
+
+            .logo-section .website-name {
+                font-size: 16px;
+            }
+
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            .search-bar input {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .search-bar button {
+                padding: 8px 10px;
+            }
+
+            .travel-header {
+                gap: 10px;
+            }
+
+            .city-selector {
+                font-size: 1rem;
+            }
+
+            .travel-search {
+                min-width: 100%;
+                margin-left: 0;
+            }
+
+            .banner-section {
+                max-height: 200px;
+            }
+
+            .offer-card h5 {
+                font-size: 15px;
+            }
+
+            .tab-button {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .price {
+                font-size: 15px;
+            }
+
+            .floating-bar {
+                right: 5px;
+                bottom: 10px;
+            }
+
+            .floating-bar a {
+                padding: 8px;
+                font-size: 10px;
+            }
+
+            .floating-bar a i {
+                font-size: 14px;
+            }
+        }
+
+        /* Hide sidebar on mobile */
+        @media (max-width: 767px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .destination-sidebar {
+                display: none;
+            }
+
+            .destination-sidebar.show {
+                display: block;
+            }
+
+            .travel-content {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img class="logo" src="img/kimberley.jpg" alt="Kimberley Logo">
+                    <span class="website-name">Kimberley</span>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything related to travel">
+                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <nav class="header-nav">
+                    <a href="#">Log in</a><span>|</span>
+                    <a href="#">Register</a><span>|</span>
+
+                    <div class="dropdown-container" id="myOrdersDropdown">
+                        <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu order-dropdown-menu">
+                            <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                            <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                            <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                            <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                            <hr>
+                            <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                        </div>
+                    </div>
+
+                    <span>|</span>
+
+                    <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                        <a href="#" class="dropdown-toggle">Contact customer service <i
+                                class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu contact-dropdown-menu">
+                            <a href="#" class="customer-center">Visit Customer Center ></a>
+                            <hr>
+                            <p>Domestic: 95010 / 400-830-6666</p>
+                            <p>HK: +852-3008-3295</p>
+                            <p>Macao: +86-21 3406-4888</p>
+                            <p>Taiwan: +86-21 3406-4888</p>
+                            <p>Other regions: +86-21 3406-4888</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+
+                    <div class="theme-toggle" id="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <span class="theme-switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <h3>Menu</h3>
+                <button class="mobile-nav-close" id="mobileNavClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="mobile-nav-menu">
+                <li><a href="#"><i class="fas fa-hotel"></i> Hotel</a></li>
+                <li><a href="#"><i class="fas fa-plane"></i> Airfare</a></li>
+                <li><a href="#"><i class="fas fa-train"></i> Train tickets</a></li>
+                <li><a href="#"><i class="fas fa-flag"></i> Travel</a></li>
+                <li><a href="#"><i class="fas fa-ticket"></i> Tickets & Events</a></li>
+                <li><a href="#"><i class="fas fa-bus"></i> Bus and boat tickets</a></li>
+                <li><a href="#"><i class="fas fa-car"></i> Car</a></li>
+                <li><hr></li>
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">My Orders</a></li>
+                <li><a href="#">Contact Customer Service</a></li>
+            </ul>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar collapsed" id="sidebar" style="margin-top: 0px;">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav>
+                <ul>
+                    <li class="menu-item" data-menu="hotel">
+                        <a href="#">
+                            <i class="fa-solid fa-hotel"></i>
+                            <span class="text">Hotel</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                            <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                        </ul>
+                        <div class="hover-description">Hotel</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="flight">
+                        <a href="#">
+                            <i class="fa-solid fa-plane"></i>
+                            <span class="text">Airfare</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao andTaiwan</a></li>
+                            <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                            <li><a href="flightStatusAirfare.html">Flight status</a></li>
+                            <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                            <li><a href="guideAirfare.html">Airport Guide</a></li>
+                            <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                        </ul>
+                        <div class="hover-description">Airfare</div>
+                    </li>
+
+                    <!-- <li class="menu-item" data-menu="train">
+                        <a href="#">
+                            <i class="fa-solid fa-train"></i>
+                            <span class="text">Train tickets</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Domestic train tickets</a></li>
+                            <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                        </ul>
+                        <div class="hover-description">Train tickets</div>
+                    </li> -->
+
+                    <li class="menu-item active" data-menu="travels">
+                        <a href="#">
+                            <i class="fa-solid fa-flag"></i>
+                            <span class="text">Travel</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                            <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                            <li><a href="3.Private-group.html">Private tour</a></li>
+                            <li><a href="4.Free-walking.html">Independent travel</a></li>
+                            <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                            <li><a href="6.Day-trip.html">Day trip</a></li>
+                            <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                            <li><a href="8.Surrounding.html">Local tours</a></li>
+                            <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                            <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                            <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                            <li><a href="12.Visa.html">Visa</a></li>
+                            <li><a href="13.insures.html">Insurance</a></li>
+                            <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                            <li><a href="15.Destination.html">Destination</a></li>
+                        </ul>
+                        <div class="hover-description">Travel</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="tickets">
+                        <a href="#">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span class="text">Tickets & Events</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Sub-menu Item X</a></li>
+                            <li><a href="#">Sub-menu Item Y</a></li>
+                        </ul>
+                        <div class="hover-description">Tickets & Events</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="Bus&Boat">
+                        <a href="#">
+                            <i class="fa-solid fa-bus"></i>
+                            <span class="text">Bus and boat tickets</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="busTicket.html">Bus ticket</a></li>
+                            <li><a href="boatTicket.html">Boat ticket</a></li>
+                        </ul>
+                        <div class="hover-description">Bus and boat tickets</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="Car">
+                        <a href="#">
+                            <i class="fa-solid fa-car"></i>
+                            <span class="text">Car</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                            <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                            <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                            <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                        </ul>
+                        <div class="hover-description">Car</div>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" style="margin-top: 0px;">
+            <!-- Mobile Destination Menu Toggle -->
+            <button id="mobileDestMenuToggle" style="display:none; width:100%; padding:12px; background:var(--ctrip-blue); color:white; border:none; border-radius:5px; margin-bottom:15px;">
+                <i class="fas fa-map-marker-alt"></i> Browse Destinations
+            </button>
+
+            <!-- Travel Header -->
+            <div class="travel-header">
+                <span style="margin-right:12px;">
+                    <i class="fas fa-home" style="color:var(--ctrip-blue);font-size:1.5rem;"></i>
+                </span>
+
+                <div class="city-selector" id="citySelector">
+                    <i class="fas fa-map-marker-alt" style="color:var(--ctrip-blue);"></i>
+                    <span id="selectedCity">Shanghai</span> Station
+                    <i class="fas fa-chevron-down"
+                        style="font-size:0.8rem;margin-left:4px;color:var(--primary-text);"></i>
+                    <div class="city-dropdown" id="cityDropdown">
+                        <a href="#" data-city="Shanghai">Shanghai Station</a>
+                        <a href="#" data-city="Beijing">Beijing Station</a>
+                        <a href="#" data-city="Guangzhou">Guangzhou Station</a>
+                        <a href="#" data-city="Shenzhen">Shenzhen Station</a>
+                        <a href="#" data-city="Chengdu">Chengdu Station</a>
+                    </div>
+                </div>
+
+                <div class="travel-search">
+                    <input type="text" placeholder="Search destinations, tours...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Main Layout -->
+            <div class="travel-layout">
+                <!-- Destination Sidebar -->
+                <div class="destination-sidebar" id="destinationSidebar">
+                    <ul>
+                        <!-- Hot Recommendations -->
+                        <li>
+                            <a href="#" class="menu-item" id="hotRecommendations">
+                                <span style="width:24px;text-align:center;margin-right:10px;">
+                                    <i class="fas fa-fire"></i>
+                                </span>
+                                Hot Recommendations
+                            </a>
+                            <div class="mega-menu" id="hotRecMegaMenu">
+                                <div style="display:flex;flex-wrap:wrap;gap:20px;">
+                                    <div style="flex:1;min-width:180px;">
+                                        <h4
+                                            style="font-size:15px;font-weight:bold;color:var(--primary-text);margin-bottom:12px;border-bottom:1px solid var(--border-color);padding-bottom:5px;">
+                                            Popular Cities</h4>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Harbin
+                                            (哈尔滨)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Lijiang
+                                            (丽江)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Sanya
+                                            (三亚)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Beijing
+                                            (北京)</a>
+                                    </div>
+                                    <div style="flex:1;min-width:180px;">
+                                        <h4
+                                            style="font-size:15px;font-weight:bold;color:var(--primary-text);margin-bottom:12px;border-bottom:1px solid var(--border-color);padding-bottom:5px;">
+                                            Popular Countries</h4>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Japan
+                                            (日本)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Turkey
+                                            (土耳其)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Singapore
+                                            (新加坡)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Maldives
+                                            (马尔代夫)</a>
+                                    </div>
+                                    <div style="flex:1;min-width:180px;">
+                                        <h4
+                                            style="font-size:15px;font-weight:bold;color:var(--primary-text);margin-bottom:12px;border-bottom:1px solid var(--border-color);padding-bottom:5px;">
+                                            Islands & Spots</h4>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Bali
+                                            (巴厘岛)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Phuket
+                                            (普吉岛)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Iceland
+                                            (冰岛)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Hong
+                                            Kong (香港)</a>
+                                    </div>
+                                    <div style="flex:1;min-width:180px;">
+                                        <h4
+                                            style="font-size:15px;font-weight:bold;color:var(--primary-text);margin-bottom:12px;border-bottom:1px solid var(--border-color);padding-bottom:5px;">
+                                            Other Tours</h4>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Xishuangbanna
+                                            (西双版纳)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Jiuzhaigou
+                                            (九寨沟)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Morocco
+                                            (摩洛哥)</a>
+                                        <a href="#" class="destination-link"
+                                            style="display:block;margin-bottom:8px;font-size:13px;color:var(--primary-text);text-decoration:none;">Sri
+                                            Lanka (斯里兰卡)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Other Menu Items -->
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-umbrella-beach"></i></span> Hainan / Fujian</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-snowflake"></i></span> Northeast China</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-map-marked-alt"></i></span> China, HK, Macao, Taiwan</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-landmark"></i></span> Other Domestic</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-globe-asia"></i></span> Asia</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-monument"></i></span> Europe / Americas</a></li>
+                        <li><a href="#" class="menu-item"><span
+                                    style="width:24px;text-align:center;margin-right:10px;"><i
+                                        class="fas fa-globe-africa"></i></span> Africa / Oceania</a></li>
+                    </ul>
+                </div>
+
+                <!-- Travel Content -->
+                <div class="travel-content">
+                    <!-- Banner -->
+                    <div class="banner-section">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            alt="Travel Banner">
+                    </div>
+
+                    <!-- Special Offers -->
+                    <div
+                        style="background:var(--ctrip-blue-low);padding:20px;border-radius:8px;margin-bottom:25px;">
+                        <h3
+                            style="font-size:18px;font-weight:700;margin-bottom:15px;color:var(--ctrip-blue);padding-bottom:8px;border-bottom:1px solid var(--border-color);">
+                            Special Offers & Deals</h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+                            <div style="flex:1;min-width:250px;">
+                                <div class="offer-card">
+                                    <h5>Early Bird Discount</h5>
+                                    <p style="margin:0 0 8px 0;font-size:14px;color:var(--primary-text);">Book 60 days
+                                        in advance and get 15% off selected tours</p>
+                                    <small style="color:#666666;">Valid until: Dec 31, 2025</small>
+                                </div>
+                            </div>
+                            <div style="flex:1;min-width:250px;">
+                                <div class="offer-card">
+                                    <h5>Family Package</h5>
+                                    <p style="margin:0 0 8px 0;font-size:14px;color:var(--primary-text);">Special rates
+                                        for families - kids under 12 travel free</p>
+                                    <small style="color:#666666;">Selected destinations only</small>
+                                </div>
+                            </div>
+                            <div style="flex:1;min-width:250px;">
+                                <div class="offer-card">
+                                    <h5>Group Discount</h5>
+                                    <p style="margin:0 0 8px 0;font-size:14px;color:var(--primary-text);">10% off for
+                                        groups of 5 or more people</p>
+                                    <small style="color:#666666;">All year round</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div
+                        style="display:flex;border-bottom:1px solid var(--border-color);margin-bottom:1.5rem;flex-wrap:wrap;gap:10px;">
+                        <button id="domestic-tab" class="tab-button active">Domestic Tours (国内游)</button>
+                        <button id="around-tab" class="tab-button">Local/Around City (周边游)</button>
+                        <button id="abroad-tab" class="tab-button">Overseas/Abroad (出境游)</button>
+                    </div>
+
+                    <!-- Domestic Tab Content -->
+                    <div id="domestic" style="display:block;">
+                        <h3
+                            style="font-size:18px;font-weight:700;margin-bottom:15px;color:var(--primary-text);padding-bottom:8px;border-bottom:1px solid var(--border-color);">
+                            Domestic Hot Recommendations</h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;">
+                            <!-- Product Card 1 -->
+                            <div style="flex:1;min-width:280px;">
+                                <div class="product-card">
+                                    <div style="position:relative;">
+                                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                            alt="Harbin Tour" style="width:100%;height:180px;object-fit:cover;">
+                                        <span class="discount-badge">15% OFF</span>
+                                    </div>
+                                    <div style="padding:15px;flex-grow:1;">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star-half-alt"></i>
+                                            <span style="color:#666666;margin-left:4px;">(4.5)</span>
+                                        </div>
+                                        <h5 style="font-size:16px;font-weight:600;margin:8px 0;color:var(--primary-text);">
+                                            Harbin-Changbaishan-Xuexiang 5-Day Tour</h5>
+                                        <div
+                                            style="display:flex;justify-content:space-between;font-size:12px;color:#666666;margin-bottom:8px;">
+                                            <span><i class="far fa-clock" style="margin-right:4px;"></i> 6 Days, 4
+                                                Nights</span>
+                                            <span><i class="fas fa-plane" style="margin-right:4px;"></i> Flight
+                                                Included</span>
+                                        </div>
+                                        <p style="font-size:13px;color:#666666;margin:8px 0;">Experience the magical ice
+                                            world of Harbin and the breathtaking beauty of Changbaishan.</p>
+                                    </div>
+                                    <div
+                                        style="border-top:1px solid var(--border-color);padding:12px 15px;display:flex;justify-content:space-between;align-items:center;">
+                                        <span class="price">¥ 3999 <small class="original-price">¥ 4699</small></span>
+                                        <a href="#" class="btn-book">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product Card 2 -->
+                            <div style="flex:1;min-width:280px;">
+                                <div class="product-card">
+                                    <div style="position:relative;">
+                                        <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                            alt="Sanya Tour" style="width:100%;height:180px;object-fit:cover;">
+                                    </div>
+                                    <div style="padding:15px;flex-grow:1;">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="far fa-star"></i>
+                                            <span style="color:#666666;margin-left:4px;">(4.0)</span>
+                                        </div>
+                                        <h5 style="font-size:16px;font-weight:600;margin:8px 0;color:var(--primary-text);">
+                                            Sanya Coconut Island 4-Day Free Travel</h5>
+                                        <div
+                                            style="display:flex;justify-content:space-between;font-size:12px;color:#666666;margin-bottom:8px;">
+                                            <span><i class="far fa-clock" style="margin-right:4px;"></i> 4 Days, 3
+                                                Nights</span>
+                                            <span><i class="fas fa-hotel" style="margin-right:4px;"></i> Luxury
+                                                Hotel</span>
+                                        </div>
+                                        <p style="font-size:13px;color:#666666;margin:8px 0;">Enjoy the tropical
+                                            paradise of Sanya with this flexible free travel package.</p>
+                                    </div>
+                                    <div
+                                        style="border-top:1px solid var(--border-color);padding:12px 15px;display:flex;justify-content:space-between;align-items:center;">
+                                        <span class="price">¥ 2888</span>
+                                        <a href="#" class="btn-book">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product Card 3 -->
+                            <div style="flex:1;min-width:280px;">
+                                <div class="product-card">
+                                    <div style="position:relative;">
+                                        <img src="https://images.unsplash.com/photo-1512529904539-caca1b6f0ea5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                            alt="Zhangjiajie Tour" style="width:100%;height:180px;object-fit:cover;">
+                                        <span class="discount-badge">10% OFF</span>
+                                    </div>
+                                    <div style="padding:15px;flex-grow:1;">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i>
+                                            <span style="color:#666666;margin-left:4px;">(5.0)</span>
+                                        </div>
+                                        <h5 style="font-size:16px;font-weight:600;margin:8px 0;color:var(--primary-text);">
+                                            Zhangjiajie National Forest Park 3-Day Tour</h5>
+                                        <div
+                                            style="display:flex;justify-content:space-between;font-size:12px;color:#666666;margin-bottom:8px;">
+                                            <span><i class="far fa-clock" style="margin-right:4px;"></i> 3 Days, 2
+                                                Nights</span>
+                                            <span><i class="fas fa-bus" style="margin-right:4px;"></i> Guided Tour</span>
+                                        </div>
+                                        <p style="font-size:13px;color:#666666;margin:8px 0;">Explore the stunning
+                                            Avatar Mountains and glass bridge in Zhangjiajie.</p>
+                                    </div>
+                                    <div
+                                        style="border-top:1px solid var(--border-color);padding:12px 15px;display:flex;justify-content:space-between;align-items:center;">
+                                        <span class="price">¥ 1899 <small class="original-price">¥ 2100</small></span>
+                                        <a href="#" class="btn-book">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align:center;margin-top:1.5rem;">
+                            <button class="more-products-btn">Load More Products (更多产品 →)</button>
+                        </div>
+                    </div>
+
+                    <!-- Around Tab (Hidden by default) -->
+                    <div id="around" style="display:none;">
+                        <h3
+                            style="font-size:18px;font-weight:700;margin-bottom:15px;color:var(--primary-text);padding-bottom:8px;border-bottom:1px solid var(--border-color);">
+                            Local/Around City Tours</h3>
+                        <p>Local tours content will appear here.</p>
+                    </div>
+
+                    <!-- Abroad Tab (Hidden by default) -->
+                    <div id="abroad" style="display:none;">
+                        <h3
+                            style="font-size:18px;font-weight:700;margin-bottom:15px;color:var(--primary-text);padding-bottom:8px;border-bottom:1px solid var(--border-color);">
+                            Overseas/Abroad Tours</h3>
+                        <p>Overseas tours content will appear here.</p>
+                    </div>
+
+                    <!-- Testimonials -->
+                    <div style="margin-top:3rem;">
+                        <h3
+                            style="font-size:18px;font-weight:700;margin-bottom:15px;color:var(--primary-text);padding-bottom:8px;border-bottom:1px solid var(--border-color);">
+                            What Our Customers Say</h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+                            <div style="flex:1;min-width:280px;">
+                                <div class="testimonial-card">
+                                    <div style="display:flex;align-items:center;margin-bottom:12px;">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer"
+                                            style="width:50px;height:50px;border-radius:50%;object-fit:cover;margin-right:15px;">
+                                        <div>
+                                            <h6 style="margin:0;font-size:15px;color:var(--primary-text);">Zhang Wei
+                                            </h6>
+                                            <small style="color:#666666;">Traveled to Japan</small>
+                                        </div>
+                                    </div>
+                                    <div class="rating-stars" style="margin-bottom:8px;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="fas fa-star"></i>
+                                    </div>
+                                    <p style="margin:0;font-size:14px;color:var(--primary-text);">"The Japan tour was
+                                        amazing! Our guide was knowledgeable and the itinerary was perfectly balanced
+                                        between sightseeing and free time."</p>
+                                </div>
+                            </div>
+                            <div style="flex:1;min-width:280px;">
+                                <div class="testimonial-card">
+                                    <div style="display:flex;align-items:center;margin-bottom:12px;">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Customer"
+                                            style="width:50px;height:50px;border-radius:50%;object-fit:cover;margin-right:15px;">
+                                        <div>
+                                            <h6 style="margin:0;font-size:15px;color:var(--primary-text);">Li Ming</h6>
+                                            <small style="color:#666666;">Traveled to Zhangjiajie</small>
+                                        </div>
+                                    </div>
+                                    <div class="rating-stars" style="margin-bottom:8px;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                            class="far fa-star"></i>
+                                    </div>
+                                    <p style="margin:0;font-size:14px;color:var(--primary-text);">"Zhangjiajie was
+                                        breathtaking! The glass bridge was a highlight. The hotel was comfortable and the
+                                        food was delicious."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Utility Bar -->
+    <div class="floating-bar">
+        <a href="#top">
+            <i class="fas fa-chevron-up"></i> TOP
+        </a>
+        <a href="#">
+            <i class="fas fa-qrcode"></i> Scan QR
+        </a>
+        <a href="#">
+            <i class="fas fa-headset"></i> Service
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const mobileDestMenuToggle = document.getElementById('mobileDestMenuToggle');
+            const destinationSidebar = document.getElementById('destinationSidebar');
+            
+            // Check screen width
+            function checkScreenWidth() {
+                if (window.innerWidth <= 767) {
+                    mobileDestMenuToggle.style.display = 'block';
+                    destinationSidebar.style.display = 'none';
+                } else {
+                    mobileDestMenuToggle.style.display = 'none';
+                    if (window.innerWidth >= 768) {
+                        destinationSidebar.style.display = 'block';
+                    }
+                }
+            }
+            
+            // Initial check
+            checkScreenWidth();
+            
+            // Listen for resize
+            window.addEventListener('resize', checkScreenWidth);
+            
+            // Toggle destination menu on mobile
+            mobileDestMenuToggle.addEventListener('click', () => {
+                destinationSidebar.classList.toggle('show');
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileNav.classList.add('active');
+                mobileNavOverlay.style.display = 'block';
+            });
+            
+            mobileNavClose.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileNavOverlay.style.display = 'none';
+            });
+            
+            mobileNavOverlay.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileNavOverlay.style.display = 'none';
+            });
+
+            // Dropdowns
+            function setupDropdown(containerId) {
+                const container = document.getElementById(containerId);
+                const toggle = container.querySelector('.dropdown-toggle');
+                const menu = container.querySelector('.dropdown-menu');
+
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!container.contains(e.target)) {
+                        menu.style.display = 'none';
+                    }
+                });
+
+                container.addEventListener('mouseenter', () => {
+                    menu.style.display = 'block';
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    menu.style.display = 'none';
+                });
+            }
+
+            setupDropdown('myOrdersDropdown');
+            setupDropdown('contactCustomerServiceDropdown');
+
+            // Sidebar
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const menuItems = document.querySelectorAll('.sidebar .menu-item');
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('expanded');
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+
+            menuItems.forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    menuItems.forEach((i) => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // Theme Toggle
+            const themeSwitchCheckbox = document.getElementById('theme-switch');
+            const body = document.body;
+
+            function loadTheme() {
+                const currentTheme = localStorage.getItem('theme');
+                if (currentTheme === 'dark') {
+                    body.classList.add('dark-theme');
+                    themeSwitchCheckbox.checked = true;
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeSwitchCheckbox.checked = false;
+                }
+            }
+
+            function toggleTheme() {
+                body.classList.toggle('dark-theme');
+                if (body.classList.contains('dark-theme')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            themeSwitchCheckbox.addEventListener('change', toggleTheme);
+            loadTheme();
+
+            // City Dropdown
+            document.getElementById('citySelector').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('cityDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.querySelectorAll('#cityDropdown a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const city = this.getAttribute('data-city');
+                    document.getElementById('selectedCity').textContent = city;
+                    document.getElementById('cityDropdown').style.display = 'none';
+                });
+            });
+
+            document.addEventListener('click', function() {
+                document.getElementById('cityDropdown').style.display = 'none';
+            });
+
+            // Mega Menu Hover - only for desktop
+            function setupMegaMenu() {
+                const hotRecLink = document.getElementById('hotRecommendations');
+                const megaMenu = document.getElementById('hotRecMegaMenu');
+                
+                if (window.innerWidth >= 768) {
+                    if (hotRecLink && megaMenu) {
+                        hotRecLink.addEventListener('mouseenter', () => {
+                            megaMenu.style.display = 'block';
+                        });
+
+                        hotRecLink.addEventListener('mouseleave', () => {
+                            megaMenu.style.display = 'none';
+                        });
+                        
+                        megaMenu.addEventListener('mouseenter', () => {
+                            megaMenu.style.display = 'block';
+                        });
+                        
+                        megaMenu.addEventListener('mouseleave', () => {
+                            megaMenu.style.display = 'none';
+                        });
+                    }
+                } else {
+                    // For mobile, use click instead
+                    if (hotRecLink && megaMenu) {
+                        hotRecLink.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            megaMenu.classList.toggle('show');
+                        });
+                    }
+                }
+            }
+            
+            setupMegaMenu();
+            window.addEventListener('resize', setupMegaMenu);
+
+            // Tab Switching
+            const domesticTab = document.getElementById('domestic-tab');
+            const aroundTab = document.getElementById('around-tab');
+            const abroadTab = document.getElementById('abroad-tab');
+
+            const domesticContent = document.getElementById('domestic');
+            const aroundContent = document.getElementById('around');
+            const abroadContent = document.getElementById('abroad');
+
+            function activateTab(tab, content) {
+                [domesticTab, aroundTab, abroadTab].forEach(t => {
+                    t.classList.remove('active');
+                });
+                [domesticContent, aroundContent, abroadContent].forEach(c => {
+                    c.style.display = 'none';
+                });
+                tab.classList.add('active');
+                content.style.display = 'block';
+            }
+
+            domesticTab.addEventListener('click', () => activateTab(domesticTab, domesticContent));
+            aroundTab.addEventListener('click', () => activateTab(aroundTab, aroundContent));
+            abroadTab.addEventListener('click', () => activateTab(abroadTab, abroadContent));
+
+            // Banner Rotation
+            const banners = [
+                'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+            ];
+
+            let bannerIndex = 0;
+            const bannerImg = document.querySelector('.banner-section img');
+
+            if (bannerImg) {
+                setInterval(() => {
+                    bannerIndex = (bannerIndex + 1) % banners.length;
+                    bannerImg.src = banners[bannerIndex];
+                }, 5000);
+            }
+
+            // Load More Products
+            const moreProductsBtn = document.querySelector('.more-products-btn');
+            if (moreProductsBtn) {
+                moreProductsBtn.addEventListener('click', () => {
+                    alert('Loading more products...');
+                });
+            }
+
+            // Book Now buttons
+            document.querySelectorAll('.btn-book').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Booking feature would be implemented here.');
+                });
+            });
+
+            // Smooth scroll for TOP button
+            const topBtn = document.querySelector('.floating-bar a[href="#top"]');
+            if (topBtn) {
+                topBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Close mobile nav when clicking on a link
+            document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    mobileNavOverlay.style.display = 'none';
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
