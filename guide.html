@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kimberley Travel & Tour | Flights - Status</title>
+  <link rel="icon" type="image/png" href="img/kimberley.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  
+</head>
+
+<body>
+
+  <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar collapsed" id="sidebar">
+
+            <!-- Hamburger inside sidebar -->
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav>
+                <ul>
+                    <li class="menu-item " data-menu="hotel">
+                        <a href="#">
+                            <i class="fa-solid fa-hotel"></i>
+                            <span class="text">Hotel</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="Domestichotel.html">Domestic hotels</a></li>
+                            <li><a href="Overseashote.html">Overseas Hotels</a></li>
+                        </ul>
+                        <div class="hover-description">Hotel</div>
+                    </li>
+
+                    <li class="menu-item " data-menu="flight">
+                        <a href="#">
+                            <i class="fa-solid fa-plane"></i>
+                            <span class="text">Airfare</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="domesticAirfare.html">Domestic/International,Hong Kong,Macao
+                                    andTaiwan</a></li>
+                            <li><a href="mapAirfare.html">Discounted airfares</a></li>
+                            <li><a href="flightStatusAirfare.html" class="flight1">Flight status</a></li>
+                            <li><a href="Check-in-and-seat-selection.html">Check-in and seat selection</a></li>
+                            <li><a href="refund&rescheduling.html">Refund and rescheduling</a></li>
+                            <li><a href="Reimbursementvouchers.html">Reimbursement vouchers</a></li>
+                            <li><a href="guideAirfare.html">Airport Guide</a></li>
+                            <li><a href="customizedAirfare.html">Customized charter flights</a></li>
+                        </ul>
+                        <div class="hover-description">Hotel</div>
+                    </li>
+
+                    <!-- <li class="menu-item" data-menu="train">
+                        <a href="#">
+                            <i class="fa-solid fa-train"></i>
+                            <span class="text">Train tickets</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Domestic train tickets</a></li>
+                            <li><a href="#">International/Hong Kong,Macao and Taiwan</a></li>
+                        </ul>
+                        <div class="hover-description">Train tickets</div>
+                    </li> -->
+
+                    <li class="menu-item" data-menu="travels">
+                        <a href="#">
+                            <i class="fa-solid fa-flag"></i>
+                            <span class="text">Travel</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="1.Travel-page.html">Tourism Homepage</a></li>
+                            <li><a href="2.Travelling-with-group.html">Group tour</a></li>
+                            <li><a href="3.Private-group.html">Private tour</a></li>
+                            <li><a href="4.Free-walking.html">Independent travel</a></li>
+                            <li><a href="5.Cruise-line.html">Cruise ship</a></li>
+                            <li><a href="6.Day-trip.html">Day trip</a></li>
+                            <li><a href="7.Customized-tourism.html">Customized travel</a></li>
+                            <li><a href="8.Surrounding.html">Local tours</a></li>
+                            <li><a href="9.Heigh-end-tour.html">High-end travel</a></li>
+                            <li><a href="10.Theme-tour.html">Theme Tour</a></li>
+                            <li><a href="11.Study-tour.html">Study Abroad</a></li>
+                            <li><a href="12.Visa.html">Visa</a></li>
+                            <li><a href="13.insures.html">Insurance</a></li>
+                            <li><a href="14.Bussiness-club-award.html">Coporate MICE</a></li>
+                            <li><a href="15.Destination.html">Destination</a></li>
+                        </ul>
+                        <div class="hover-description">Travel</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="tickets">
+                        <a href="#">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span class="text">Tickets & Events</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Sub-menu Item X</a></li>
+                            <li><a href="#">Sub-menu Item Y</a></li>
+                        </ul>
+                        <div class="hover-description">Tickets & Events</div>
+                    </li>
+
+                    <li class="menu-item" data-menu="Bus&Boat">
+                        <a href="#">
+                            <i class="fa-solid fa-bus"></i>
+                            <span class="text">Bus and boat tickets</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="busTicket.html">Bus ticket</a></li>
+                            <li><a href="boatTicket.html">Boat ticket</a></li>
+                        </ul>
+                        <div class="hover-description">Bus and boat tickets</div>
+                    </li>
+
+                    <li class="menu-item " data-menu="Car">
+                        <a href="#">
+                            <i class="fa-solid fa-car"></i>
+                            <span class="text">Car</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="domesticCarRental.html">Domestic car rental</a></li>
+                            <li><a href="overseaCaarRental.html">Overseas car rental</a></li>
+                            <li><a href="airportpickup.html">Airport pick-up and drop-off station</a></li>
+                            <li><a href="dailyCarRental.html">Daily car rental</a></li>
+                        </ul>
+                        <div class="hover-description">Car</div>
+                    </li>
+<li class="menu-item active" data-menu="Guide">
+    <a href="guide.html">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span class="text">Guide</span>
+    </a>
+    <div class="hover-description">Guide and Travel</div>
+</li>
+
+                </ul>
+            </nav>
+        </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-content">
+
+                    <div class="logo-section">
+                        <img class="logo" src="img/kimberley.jpg">
+                        <span class="website-name">Kimberley</span>
+                    </div>
+
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search for anything related to travel">
+                        <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+
+                    <nav class="header-nav">
+                        <a href="#">Log in</a><span>|</span>
+                        <a href="#">Register</a><span>|</span>
+
+                        <div class="dropdown-container" id="myOrdersDropdown">
+                            <a href="#" class="dropdown-toggle">My Orders <i class="fa-solid fa-caret-down"></i></a>
+                            <div class="dropdown-menu order-dropdown-menu">
+                                <a href="#"><i class="fa-solid fa-plane"></i> Flight tickets and related orders</a>
+                                <a href="#"><i class="fa-solid fa-hotel"></i> Hotel bookings</a>
+                                <a href="#"><i class="fa-solid fa-map-location-dot"></i> Travel orders</a>
+                                <a href="#"><i class="fa-solid fa-train"></i> Train ticket orders</a>
+                                <a href="#"><i class="fa-solid fa-list-ul"></i> All orders</a>
+                                <hr>
+                                <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> Check orders via phone</a>
+                            </div>
+                        </div>
+
+                        <span>|</span>
+
+                        <div class="dropdown-container" id="contactCustomerServiceDropdown">
+                            <a href="#" class="dropdown-toggle">Contact customer service <i
+                                    class="fa-solid fa-caret-down"></i></a>
+                            <div class="dropdown-menu contact-dropdown-menu">
+                                <a href="#" class="customer-center">Visit Customer Center ></a>
+                                <hr>
+                                <p>Domestic: 95010 / 400-830-6666</p>
+                                <p>HK: +852-3008-3295</p>
+                                <p>Macao: +86-21 3406-4888</p>
+                                <p>Taiwan: +86-21 3406-4888</p>
+                                <p>Other regions: +86-21 3406-4888</p>
+                            </div>
+                        </div>
+
+                        <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                        <a href="#" class="icon-link"><i class="fa-solid fa-heart"></i></a>
+                        <div class="theme-toggle" id="theme-toggle">
+                            <input type="checkbox" id="theme-switch" class="theme-switch-checkbox">
+                            <label for="theme-switch" class="theme-switch-label">
+                                <span class="theme-switch-inner"></span>
+                                <span class="theme-switch-slider"></span>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+
+
+
+      <!-- SEARCH BAR -->
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search cities / attractions" autocomplete="off">
+        <button id="searchBtn">Search</button>
+
+        <!-- RESULTS -->
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <div class="menu-wrapper" id="menuWrapper">
+
+        <!-- LEFT MENU -->
+        <div class="menu-left">
+          <div class="lmenu-item" data-menu="domestic">Domestic</div>
+          <div class="lmenu-item" data-menu="asia">Asia</div>
+          <div class="lmenu-item" data-menu="europe">Europe</div>
+        </div>
+
+        <!-- RIGHT MENU -->
+        <div class="menu-right">
+
+          <!-- SUB MENUS -->
+          <div class="submenu" id="domestic">
+            <h4>Domestic Cities</h4>
+            <span>Shanghai</span>
+            <span>Beijing</span>
+            <span>Chengdu</span>
+            <span>Hangzhou</span>
+          </div>
+
+          <div class="submenu" id="asia">
+            <h4>Asia Destinations</h4>
+            <span>Bangkok</span>
+            <span>Bali</span>
+            <span>Tokyo</span>
+            <span>Seoul</span>
+          </div>
+
+          <div class="submenu" id="europe">
+            <h4>Europe Cities</h4>
+            <span>Paris</span>
+            <span>London</span>
+            <span>Rome</span>
+            <span>Barcelona</span>
+          </div>
+
+          <!-- MENU IMAGE ON TOP -->
+          <div class="menu-image" id="menuImage">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Featured">
+          </div>
+
+          <!-- CARD CAROUSEL UNDER IMAGE -->
+          <div class="carousel-wrapper">
+            <button class="arrow prev" id="prevBtn">&#10094;</button>
+
+            <div class="carousel">
+              <div class="carousel-track" id="carousel">
+                <div class="card">
+                  <img src="https://etimg.etb2bimg.com/photo/115997634.cms" alt="Bali">
+                  <span class="badge">Travel</span>
+                  <p>Bali – Island of Gods</p>
+                </div>
+                <div class="card">
+                  <img src="https://www.worldatlas.com/r/w1200/upload/26/ab/bc/new-taipei-city-taiwan-weniliou.jpg"
+                    alt="Kyoto">
+                  <span class="badge">Story</span>
+                  <p>Kyoto – Ancient Japan</p>
+                </div>
+                <div class="card">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnPZKdlCwpym_VCLpGnDOXLJMKPvXWR0EFNA&s"
+                    alt="Chengdu">
+                  <span class="badge">Live</span>
+                  <p>Chengdu Lifestyle</p>
+                </div>
+                <div class="card">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl2twypJhze2u0HB9yn2FpftSUa7WRcZpq_g&s"
+                    alt="Europe">
+                  <span class="badge">Guide</span>
+                  <p>European Escape</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="arrow next" id="nextBtn">&#10095;</button>
+          </div>
+
+        </div> <!-- end of menu-right -->
+
+      </div> <!-- end of menu-wrapper -->
+      <div class="travel-section">
+        <div class="section-header">
+          <h2>Recommended travelogues</h2>
+          <span class="subtitle">
+            What is a quality travelogue? <a href="#">A must see for the application</a>
+          </span>
+          <a href="#" class="headline-link">Headlines</a>
+        </div>
+
+        <!-- ROW 1 : BALI -->
+        <a href="bali.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp3C_f-ZXsKJ5EMv2PK8nBWZf6nIQpNXLZQA&s"
+                alt="Bali Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Bali | There is always a holiday that belongs to Bali</h3>
+
+              <div class="author">
+                <img src="https://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8" alt="author">
+                <span>Xiao Lian</span>
+              </div>
+
+              <p class="description">
+                I didn't expect that when I wrote this memory of my trip to Bali, it was this situation.
+              </p>
+
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="badges">
+              <span class="badge orange">头条</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 2 : YANGON -->
+        <a href="travel.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img src="https://luxurymyanmarrivercruises.com/uploads/59632434_m1.jpg" alt="Yangon Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Yangon | Golden pagodas and colonial charm</h3>
+
+              <div class="author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_J9LbvuMVGiuXgw_KnhQyldya7tBjahn94w&s"
+                  alt="author">
+                <span>Tay Tawan</span>
+              </div>
+
+              <p class="description">
+                From the magnificent Shwedagon Pagoda to the lively streets, Yangon tells a story of
+                tradition, faith, and daily life.
+              </p>
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="badges">
+              <span class="badge green">头条</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 2 : YANGON -->
+        <a href="travel.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img
+                src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw7t_aJR21552XRcSGlRouNebEXudAkrKj9bvCfXRtswj6IJaOO4N1wYPgHhH6c_PD3PhfISK5od_rir7g1VpidG1xMJF-mhvhRyM6fx8xeq4YNEsnUzAfIkBxFhp16Wd5h_kp3sw=s294-w294-h220-k-no"
+                alt="Yangon Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Yangon | Golden pagodas and colonial charm</h3>
+
+              <div class="author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_J9LbvuMVGiuXgw_KnhQyldya7tBjahn94w&s"
+                  alt="author">
+                <span>Tay Tawan</span>
+              </div>
+
+              <p class="description">
+                From the magnificent Shwedagon Pagoda to the lively streets, Yangon tells a story of
+                tradition, faith, and daily life.
+              </p>
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="badges">
+              <span class="badge green">头条</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 2 : YANGON -->
+        <a href="travel.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img
+                src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShKuH08j0a5AUysjgFby1JtCXLu8elfYbjhk9t2MSdGRx-Y-4L"
+                alt="Yangon Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Yangon | Golden pagodas and colonial charm</h3>
+
+              <div class="author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_J9LbvuMVGiuXgw_KnhQyldya7tBjahn94w&s"
+                  alt="author">
+                <span>Tay Tawan</span>
+              </div>
+
+              <p class="description">
+                From the magnificent Shwedagon Pagoda to the lively streets, Yangon tells a story of
+                tradition, faith, and daily life.
+              </p>
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="badges">
+              <span class="badge green">头条</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 2 : YANGON -->
+        <a href="travel.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img src="https://www.gomyanmartours.com/wp-content/uploads/2016/03/Phaungdawoo-Pagoda.jpg"
+                alt="Yangon Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Yangon | Golden pagodas and colonial charm</h3>
+
+              <div class="author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_J9LbvuMVGiuXgw_KnhQyldya7tBjahn94w&s"
+                  alt="author">
+                <span>Tay Tawan</span>
+              </div>
+
+              <p class="description">
+                From the magnificent Shwedagon Pagoda to the lively streets, Yangon tells a story of
+                tradition, faith, and daily life.
+              </p>
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="badges">
+              <span class="badge green">头条</span>
+            </div>
+          </div>
+        </a>
+        <a href="travel.html" class="travel-link">
+          <div class="travel-card">
+            <div class="travel-image">
+              <img src="https://www.gomyanmartours.com/wp-content/uploads/2016/03/Phaungdawoo-Pagoda.jpg"
+                alt="Yangon Travel">
+            </div>
+
+            <div class="travel-content">
+              <h3>Yangon | Golden pagodas and colonial charm</h3>
+
+              <div class="author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_J9LbvuMVGiuXgw_KnhQyldya7tBjahn94w&s"
+                  alt="author">
+                <span>Tay Tawan</span>
+              </div>
+
+              <p class="description">
+                From the magnificent Shwedagon Pagoda to the lively streets, Yangon tells a story of
+                tradition, faith, and daily life.
+              </p>
+
+              <div class="travel-stats">
+                <div class="stat rating">
+                  <span class="score">4.0</span>
+                  <span class="stars">★★★★★</span>
+                </div>
+
+                <div class="stat reviews">
+                  <i class="icon">💬</i>
+                  <span>21 reviews</span>
+                </div>
+
+                <div class="stat views">
+                  <i class="icon">👁</i>
+                  <span>42 views</span>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="badges">
+              <span class="badge green">头条</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- CONTENT LIST -->
+        <div class="travel-list" id="travelList"></div>
+
+        <!-- PAGINATION -->
+        <div class="pagination" id="pagination">
+          <button data-page="1" class="active">1</button>
+          <button data-page="2">2</button>
+          <button data-page="3">3</button>
+          <button data-page="4">4</button>
+          <button data-page="5">5</button>
+          <button data-page="6">6</button>
+          <button data-page="7">7</button>
+          <button data-page="8">8</button>
+          <button data-page="9">9</button>
+          <button data-page="10">10</button>
+        </div>
+
+
+        <footer class="main-ctrip-footer">
+          <div class="footer-content-wrapper">
+
+            <div class="footer-column travel-info">
+              <h4 class="column-title">Travel Information</h4>
+              <div class="column-links-grid">
+                <a href="#" class="footer-link">Hotel Index</a>
+                <a href="#" class="footer-link">Strategy Index</a>
+                <a href="#" class="footer-link">Flight Index</a>
+                <a href="#" class="footer-link">Site Navigation</a>
+                <a href="#" class="footer-link">Travel Index</a>
+                <a href="#" class="footer-link">Cruise Index</a>
+                <a href="#" class="footer-link">Corporate Travel Index</a>
+              </div>
+            </div>
+
+            <div class="footer-column franchise-cooperation">
+              <h4 class="column-title">Franchise cooperation</h4>
+              <div class="column-links-grid">
+                <a href="#" class="footer-link">Distribution Alliance</a>
+                <a href="#" class="footer-link">Friendly Links</a>
+                <a href="#" class="footer-link">Insurance Agency Cooperation</a>
+                <a href="#" class="footer-link">Gift card</a>
+                <a href="#" class="footer-link">Hotel Franchise</a>
+                <a href="#" class="footer-link">Destination</a>
+                <a href="#" class="footer-link">More franchise opportunities</a>
+              </div>
+            </div>
+
+            <div class="footer-column about-ctrip">
+              <h4 class="column-title">About Kimberley</h4>
+              <div class="column-links-grid">
+                <a href="#" class="footer-link">About Kimberley</a>
+                <a href="#" class="footer-link">Kimberley Hot Topics</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <!-- <a href="#" class="footer-link">We are looking to recruit talented individuals.</a> -->
+                <a href="#" class="footer-link">User Agreement</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Business License</a>
+                <a href="#" class="footer-link">Security Center</a>
+                <a href="#" class="footer-link">Kimberley Content Center</a>
+                <a href="#" class="footer-link">Intellectual property</a>
+                <a href="#" class="footer-link">Trip.com Group</a>
+              </div>
+            </div>
+
+            <div class="footer-column contact-qr-area">
+              <div class="contact-info">
+                <p class="contact-header">Within the territory: <span class="phone-number">88010</span></p>
+                <p class="contact-header">Or <span class="phone-number">400-830-6666</span></p>
+                <p>Hong Kong, China: <span class="phone-number">+852-3008-3205</span></p>
+                <p>Macau, China: <span class="phone-number">+86-21 3406-4888</span></p>
+                <p>Taiwan, China: <span class="phone-number">+86-21 3406-4888</span></p>
+                <p>Other countries and regions: <span class="phone-number">+86-21-3406-4888</span></p>
+              </div>
+
+              <div class="qr-download-box">
+                <div class="qr-placeholder" style="background-image: url('img/qr.png');">
+                </div>
+                <p class="qr-caption">Scan the QR code to download the Kimberley App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom-section">
+            <hr class="bottom-divider">
+            <p class="copyright-info">
+              Copyright © 1999-2025, kimberley.com. All rights reserved. | ICP License: 京ICP备0500130 | <a href="#"
+                class="info-link">京ICP证030029号</a>-3 | <a href="#" class="info-link">闽ICP备0101051117491004200015号</a>
+            </p>
+
+            <p class="authority-info">
+              <span class="authority-icon">🔴</span> <a href="#" class="info-link">Shanghai Public Security
+                Bureau Registration No. 31010502002731</a> | <a href="#" class="info-link">Internet Drug
+                Information Service Qualification Certificate</a> | <a href="#" class="info-link">
+                (Shanghai) Online Medical Device Platform Registration No. (2022) 00031</a> | <a href="#"
+                class="info-link">Shanghai Online Food Registration No. 0000011</a> | <a href="#" class="info-link">
+                Tourism and Vacation Qualification</a> | <a href="#" class="info-link">Platform Information</a>
+            </p>
+
+            <p class="report-info">
+              Report hotline for illegal and harmful information: <span class="hotline">021-22230045</span> |
+              National tourism complaint hotline: <span class="hotline">12345</span> | <a href="#"
+                class="info-link commitment-link">Shanghai tourism website's commitment to fulfilling its
+                main responsibility for integrity building</a>
+            </p>
+
+            <div class="certificate-logos" style="margin-left: 20%;">
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+              <div class="logo-placeholder" style="background-image: url(img/airLogo.png);"></div>
+            </div>
+          </div>
+        </footer>
+        <script src="guidescript.js"></script>
+        <script src="script.js"></script>
+</body>
+
+</html>

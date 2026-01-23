@@ -331,10 +331,11 @@ body {
   border: 1px solid var(--border-color);
   transition: width 0.3s ease;
   overflow-x: hidden;
+  overflow-y: auto;       
   position: fixed;
   top: 0;                /* ✅ FIX: Sidebar full height */
   left: 0;
-  height: 100vh;         /* ✅ Full height */
+   height: calc(100vh - 60px);          /* ✅ Full height */
   z-index: 1200;
   margin-top: 60px;
 }
